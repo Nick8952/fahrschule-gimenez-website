@@ -26,7 +26,10 @@ python -m http.server 8080      # dann http://localhost:8080
 
 ## 2) Was ist bereits fertig ✅
 
-- Kompletter Neubau der Website (One-Pager) mit **allen Inhalten von gimenez.ch** (1:1)
+- **Mehrseitige Website** mit durchgängiger Navigation:
+  `index.html` (Start), `angebote.html`, `ueber-uns.html`, `ablauf.html` (inkl. FAQ-Akkordeon), `kontakt.html`
+- Alle Inhalte von gimenez.ch **1:1** übernommen, plus Zusatzinfos aus dem fahrlehrer.ch-Profil
+  (6 Sprachen inkl. Français, Schulwagen FIAT/SEAT, Theorie in allen Theoriesprachen)
 - Modernes, responsives Design + dynamische Effekte (Reveal-on-Scroll, animierte Zähler,
   Scroll-Fortschritt, mobile Navigation, Hover-Effekte, Klick-zu-Anruf)
 - SEO: Meta-Tags, Open Graph, `schema.org DrivingSchool`

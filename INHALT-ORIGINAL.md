@@ -25,8 +25,21 @@
 - WAB Kurs
 - Moto Kurse
 
-## Sprachen (Originalwortlaut)
-Espanol, Portugues, Deutsch, Italiano, English
+## Sprachen
+- Laut alter Website (gimenez.ch): Espanol, Portugues, Deutsch, Italiano, English
+- Laut Branchenprofil (fahrlehrer.ch): zusätzlich **Français** → insgesamt **6 Sprachen**:
+  Deutsch, English, Français, Italiano, Português, Español
+- Theorie „in allen Theoriesprachen" möglich
+
+## Fahrzeuge (Quelle: fahrlehrer.ch)
+- Schulwagen mit **Handschaltung**: **FIAT** und **SEAT**
+- Automat gemäss alter Website ebenfalls möglich („Geschaltet oder Automat")
+
+## Zusatzinfos (Quelle: fahrlehrer.ch-Profil)
+- Profil: „Premium"-Eintrag
+- Region: Zürich (Autofahrschulen Zürich)
+- Adresse/Telefon identisch: Seebahnstrasse 127, 8003 Zürich · 079 675 92 75
+- Keine Preise, Öffnungszeiten oder Bewertungen im Profil hinterlegt
 
 ## Sonstige Textelemente
 - Call-to-Action: „hier anmelden…"

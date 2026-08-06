@@ -16,17 +16,22 @@ dünn und optisch veraltet – diese Version zeigt, wie modern und kundenorienti
 - **Barrierearm** – Fokuszustände, `prefers-reduced-motion`, semantisches HTML
 - **Kontaktformular** – öffnet vorbefüllte E-Mail (kein Backend nötig)
 
-## 📁 Struktur
+## 📁 Struktur (mehrseitige Website)
 ```
 fahrschule-gimenez-website/
-├── index.html              # Komplette Seite (One-Pager)
-├── css/style.css           # Design & Effekte
-├── js/main.js              # Interaktivität
+├── index.html              # Startseite
+├── angebote.html           # Angebote & Kurse
+├── ueber-uns.html          # Über Roberto Gimenez
+├── ablauf.html             # In 4 Schritten zum Führerschein + FAQ
+├── kontakt.html            # Kontakt, Formular & Karte
+├── css/style.css           # Design & Effekte (gemeinsam für alle Seiten)
+├── js/main.js              # Interaktivität (gemeinsam für alle Seiten)
 ├── assets/img/
 │   ├── favicon.svg         # Neues Favicon
 │   ├── hero-original.jpg   # Original-Grafik der alten Seite (archiviert)
 │   └── logo-original.png   # Original-Icon der alten Seite (archiviert)
 ├── INHALT-ORIGINAL.md      # Komplettes Inhalts-Archiv der alten Seite
+├── WEITER-ZUHAUSE.md       # Übergabe & Weiterarbeits-Prompt
 └── README.md
 ```
 

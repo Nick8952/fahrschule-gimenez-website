@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /warenkorb.html
+Disallow: /kasse.html
+Disallow: /bestaetigung.html
+
+Sitemap: https://www.gimenez.ch/sitemap.xml

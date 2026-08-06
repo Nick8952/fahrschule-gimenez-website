@@ -24,27 +24,40 @@ python -m http.server 8080      # dann http://localhost:8080
 
 ---
 
-## 2) Was ist bereits fertig ✅
+## 2) Was ist bereits fertig ✅ (verkaufsbereit)
 
-- **Mehrseitige Website** mit durchgängiger Navigation:
-  `index.html` (Start), `angebote.html`, `ueber-uns.html`, `ablauf.html` (inkl. FAQ-Akkordeon), `kontakt.html`
-- Alle Inhalte von gimenez.ch **1:1** übernommen, plus Zusatzinfos aus dem fahrlehrer.ch-Profil
+- **12 Seiten** mit durchgängiger Navigation + Warenkorb-Icon im Header:
+  `index.html`, `angebote.html`, `preise.html`, `ueber-uns.html`, `ablauf.html` (FAQ-Akkordeon),
+  `kontakt.html`, `warenkorb.html`, `kasse.html`, `bestaetigung.html`,
+  `impressum.html`, `datenschutz.html`, `agb.html`
+- **Kompletter Buchungs-/Checkout-Ablauf:** Preise → Warenkorb (Menge ändern/entfernen) →
+  Kasse (Kontaktdaten, Zahlungsart, AGB-Häkchen) → Bestätigung mit Referenznummer.
+  Der Warenkorb liegt im Browser (localStorage); die Anfrage wird am Ende per vorbereiteter
+  **E-Mail** an `info@gimenez.ch` gesendet. **Keine Online-Zahlung** (bewusst als
+  unverbindliche Buchungsanfrage) – später an ein Zahlungssystem anbindbar.
+- **Rechtsseiten** als Vorlage: Impressum, Datenschutz (revDSG), AGB
+- Alle Inhalte von gimenez.ch **1:1** übernommen, plus fahrlehrer.ch-Infos
   (6 Sprachen inkl. Français, Schulwagen FIAT/SEAT, Theorie in allen Theoriesprachen)
 - Modernes, responsives Design + dynamische Effekte (Reveal-on-Scroll, animierte Zähler,
-  Scroll-Fortschritt, mobile Navigation, Hover-Effekte, Klick-zu-Anruf)
-- SEO: Meta-Tags, Open Graph, `schema.org DrivingSchool`
+  Scroll-Fortschritt, mobile Navigation, Hover-Effekte, Klick-zu-Anruf, Warenkorb-Badge)
+- SEO: Meta-Tags, Open Graph, `schema.org DrivingSchool`, `robots.txt`, `sitemap.xml`
 - Kontaktformular (öffnet vorbefüllte E-Mail), OpenStreetMap-Karte
 - `INHALT-ORIGINAL.md` = vollständiges Archiv der alten Seite (nichts verloren)
 - `.gitlab-ci.yml` für automatisches GitLab-Pages-Deployment
 
-## 3) Was noch offen ist 🔧 (Ideen für nächste Schritte)
+## 3) Was noch offen ist 🔧 (braucht Kundendaten oder ein Backend)
 
-- **Echte Inhalte vom Kunden einbauen:** Preise, Öffnungszeiten, echte Fotos, Kursdaten, Bewertungen
-- Eigene professionelle **Fotos** (Fahrlehrer, Auto, Motorrad) statt Platzhalter-Grafiken
-- **Logo** in guter Qualität
-- Optional: mehrsprachige Versionen (ES/PT/IT/EN) als Unterseiten
-- Optional: Kontaktformular an echtes Backend/Formspree anbinden
-- **Live schalten:** GitLab Pages aktivieren oder auf bestehendes Hosting (Hoststar) per FTP hochladen
+- **Echte Preise & Daten vom Kunden:** Die Preise auf `preise.html` sind als *Richtpreise*
+  gekennzeichnet – definitiv bestätigen und ersetzen. Ebenso Öffnungszeiten, Kursdaten, Bewertungen.
+- **Impressum/Datenschutz/AGB** sind Vorlagen mit `[Platzhaltern]` → rechtlich prüfen/ausfüllen
+  (Rechtsform, UID/MwSt., Absagefristen).
+- **Echte Online-Zahlung** (Kreditkarte/TWINT) braucht ein Zahlungssystem wie Stripe/Datatrans
+  + Konto/Backend des Kunden – auf einer rein statischen Seite nicht möglich.
+- **Formular-Backend:** Kontakt- & Buchungsanfrage laufen aktuell über `mailto:` (öffnet das
+  E-Mail-Programm). Für automatischen Versand ohne E-Mail-Client → Formspree/Backend anbinden.
+- Eigene professionelle **Fotos** + **Logo** statt Platzhalter-Grafiken
+- Optional: mehrsprachige Unterseiten (ES/PT/IT/EN/FR)
+- **Live schalten:** GitLab Pages aktivieren oder per FTP auf Hoststar hochladen
 - Feinschliff: Lighthouse-Check (Performance/SEO/Accessibility)
 
 ---

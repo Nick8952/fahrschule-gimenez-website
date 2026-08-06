@@ -8,6 +8,7 @@ pages:
   script:
     - mkdir -p public
     - cp *.html public/
+    - cp robots.txt sitemap.xml public/
     - cp -r css js assets public/
   artifacts:
     paths:

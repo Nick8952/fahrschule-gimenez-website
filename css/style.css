@@ -301,6 +301,45 @@ img, svg, iframe { max-width: 100%; display: block; }
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
 .reveal.visible { opacity: 1; transform: none; }
 
+/* ---------- Subpage banner ---------- */
+.page-hero { position: relative; overflow: hidden; background: linear-gradient(160deg, var(--navy), var(--navy-2)); color: #fff; padding: clamp(3rem, 7vw, 5rem) 0 clamp(2.5rem, 5vw, 3.5rem); }
+.page-hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 85% -10%, rgba(255, 206, 58, .28), transparent 55%), radial-gradient(circle at 0% 120%, rgba(30, 136, 229, .35), transparent 50%); }
+.page-hero .container { position: relative; z-index: 1; }
+.page-hero h1 { color: #fff; }
+.page-hero .eyebrow { color: var(--gold); }
+.page-hero p { color: #c7d4ea; max-width: 60ch; font-size: 1.08rem; }
+.breadcrumb { list-style: none; display: flex; flex-wrap: wrap; gap: .4rem; padding: 0; margin: 0 0 1rem; font-size: .85rem; color: #9fb2d4; }
+.breadcrumb a { color: #c7d4ea; }
+.breadcrumb a:hover { color: var(--gold); }
+.breadcrumb li::after { content: "›"; margin-left: .4rem; color: #6b7fa6; }
+.breadcrumb li:last-child::after { content: ""; }
+
+/* ---------- CTA band ---------- */
+.cta-band { background: linear-gradient(135deg, var(--blue), var(--blue-dark)); color: #fff; border-radius: var(--radius-lg); padding: clamp(2rem, 5vw, 3rem); text-align: center; box-shadow: var(--shadow); position: relative; overflow: hidden; }
+.cta-band::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 90% 10%, rgba(255, 206, 58, .3), transparent 50%); }
+.cta-band > * { position: relative; }
+.cta-band h2 { color: #fff; }
+.cta-band p { color: #e3edfb; max-width: 52ch; margin: 0 auto 1.4rem; }
+.cta-actions { display: flex; flex-wrap: wrap; gap: .8rem; justify-content: center; }
+.cta-band .btn-outline { color: #fff; border-color: rgba(255, 255, 255, .6); }
+.cta-band .btn-outline:hover { background: rgba(255, 255, 255, .15); color: #fff; }
+
+/* ---------- Vehicles ---------- */
+.vehicles { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.2rem; }
+.vehicle-chip { display: inline-flex; align-items: center; gap: .6rem; background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: .8rem 1.2rem; font-weight: 600; box-shadow: var(--shadow-sm); transition: transform .3s var(--ease), box-shadow .3s var(--ease); }
+.vehicle-chip:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.vehicle-chip .emoji { font-size: 1.4rem; }
+
+/* ---------- FAQ accordion ---------- */
+.faq { max-width: 780px; margin: 0 auto; }
+.faq-item { background: #fff; border: 1px solid var(--line); border-radius: 14px; margin-bottom: .8rem; overflow: hidden; box-shadow: var(--shadow-sm); transition: box-shadow .3s var(--ease); }
+.faq-item.open { box-shadow: var(--shadow); }
+.faq-q { width: 100%; text-align: left; background: none; border: 0; cursor: pointer; padding: 1.1rem 1.3rem; font-family: "Poppins", sans-serif; font-weight: 600; font-size: 1.02rem; color: var(--navy); display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+.faq-q .chev { flex: 0 0 auto; width: 22px; height: 22px; transition: transform .3s var(--ease); color: var(--blue); }
+.faq-item.open .chev { transform: rotate(180deg); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height .35s var(--ease); }
+.faq-a-inner { padding: 0 1.3rem 1.2rem; color: var(--muted); }
+
 /* ---------- Responsive ---------- */
 @media (max-width: 940px) {
   .hero-inner { grid-template-columns: 1fr; }

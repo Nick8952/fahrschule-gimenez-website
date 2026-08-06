@@ -131,6 +131,37 @@
     });
   }
 
+  /* ---- FAQ-Akkordeon ---- */
+  var faqItems = Array.prototype.slice.call(document.querySelectorAll(".faq-item"));
+  faqItems.forEach(function (item) {
+    var q = item.querySelector(".faq-q");
+    var a = item.querySelector(".faq-a");
+    if (!q || !a) return;
+    q.setAttribute("aria-expanded", "false");
+    q.addEventListener("click", function () {
+      var isOpen = item.classList.contains("open");
+      // andere schliessen (Accordion-Verhalten)
+      faqItems.forEach(function (other) {
+        if (other !== item) {
+          other.classList.remove("open");
+          var oa = other.querySelector(".faq-a");
+          var oq = other.querySelector(".faq-q");
+          if (oa) oa.style.maxHeight = null;
+          if (oq) oq.setAttribute("aria-expanded", "false");
+        }
+      });
+      if (isOpen) {
+        item.classList.remove("open");
+        a.style.maxHeight = null;
+        q.setAttribute("aria-expanded", "false");
+      } else {
+        item.classList.add("open");
+        a.style.maxHeight = a.scrollHeight + "px";
+        q.setAttribute("aria-expanded", "true");
+      }
+    });
+  });
+
   /* ---- Sanftes Scrollen für interne Links (Fallback) ---- */
   document.querySelectorAll('a[href^="#"]').forEach(function (a) {
     a.addEventListener("click", function (e) {

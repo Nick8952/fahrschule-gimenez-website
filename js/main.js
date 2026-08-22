@@ -243,7 +243,7 @@
     if (!items.length) {
       cartRoot.innerHTML =
         '<div class="cart-empty">' +
-          '<div class="cart-empty-icon" aria-hidden="true">🛒</div>' +
+          '<div class="cart-empty-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.4" fill="currentColor" stroke="none"/><circle cx="17" cy="20" r="1.4" fill="currentColor" stroke="none"/><path d="M2.5 3h2l2.4 12.1a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L20.5 7H6"/></svg></div>' +
           '<h2>Dein Warenkorb ist leer</h2>' +
           '<p>Stöbere durch unsere Kurse und Fahrstunden und leg dir zusammen, was du brauchst.</p>' +
           '<a href="preise.html" class="btn btn-primary btn-lg">Zu den Preisen</a>' +
@@ -410,7 +410,7 @@
             '<p class="order-hint" style="margin-top:1rem"><strong>Kontakt:</strong> ' + order.firstname + ' ' + order.lastname + ' · ' + order.phone + ' · ' + order.email + '<br><strong>Bezahlung:</strong> ' + order.payment + (order.preferred ? '<br><strong>Wunschtermin:</strong> ' + order.preferred : '') + '</p>' +
           '</div>' +
           '<div class="confirm-actions">' +
-            '<a href="' + buildMailto(order) + '" class="btn btn-primary btn-lg">📧 Anfrage jetzt senden</a>' +
+            '<a href="' + buildMailto(order) + '" class="btn btn-primary btn-lg"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg> Anfrage jetzt senden</a>' +
             '<a href="tel:+41796759275" class="btn btn-outline btn-lg">Lieber anrufen</a>' +
           '</div>' +
           '<p class="fineprint" style="margin-top:1.4rem">Es erfolgt keine Online-Zahlung. Mit „Anfrage senden“ öffnet sich dein E-Mail-Programm mit einer vorbereiteten Nachricht an ' + SHOP_EMAIL + '.</p>' +

@@ -224,6 +224,9 @@ img, svg, iframe { max-width: 100%; display: block; }
 .checklist li em { font-style: normal; color: var(--blue-dark); font-weight: 600; }
 
 .split-media { position: relative; }
+.contact-info-only { max-width: 640px; margin: 0 auto; text-align: center; }
+.contact-info-only .contact-list { text-align: left; }
+.contact-info-only .contact-actions { justify-content: center; }
 .media-card { position: relative; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow); }
 .media-glow { position: absolute; inset: -30%; background: radial-gradient(circle, rgba(30, 136, 229, .35), transparent 60%); animation: float 12s ease-in-out infinite; }
 .media-illustration { width: 100%; height: auto; position: relative; }
@@ -399,7 +402,7 @@ img, svg, iframe { max-width: 100%; display: block; }
 /* ---------- Info-Hinweis ---------- */
 .notice { display: flex; gap: .8rem; align-items: flex-start; background: #eef6ff; border: 1px solid #cfe4fb; border-left: 4px solid var(--blue); border-radius: 12px; padding: 1rem 1.2rem; margin: 0 0 2rem; }
 .notice p { margin: 0; color: #274060; font-size: .96rem; }
-.notice-icon { font-size: 1.2rem; flex: 0 0 auto; line-height: 1.4; }
+.notice-icon { flex: 0 0 auto; width: 1.3rem; height: 1.3rem; color: var(--blue); margin-top: .1rem; }
 
 /* ---------- Preise ---------- */
 .price-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.4rem; }
@@ -452,6 +455,7 @@ img, svg, iframe { max-width: 100%; display: block; }
 
 /* ---------- Kasse-Layout ---------- */
 .checkout-layout { display: grid; grid-template-columns: 1.4fr .9fr; gap: 2rem; align-items: start; }
+.checkout-main, .checkout-aside { min-width: 0; }
 .checkout-main .contact-form { box-shadow: var(--shadow); }
 .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 .payment-methods { border: 0; padding: 0; margin: 1.2rem 0; }

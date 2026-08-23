@@ -3,7 +3,7 @@ $listener = New-Object System.Net.HttpListener
 $listener.Prefixes.Add("http://localhost:8123/")
 $listener.Start()
 Write-Output "Serving $root on http://localhost:8123/"
-$mime = @{ ".html"="text/html"; ".css"="text/css"; ".js"="application/javascript"; ".png"="image/png"; ".jpg"="image/jpeg"; ".svg"="image/svg+xml"; ".ico"="image/x-icon"; ".webp"="image/webp"; ".woff2"="font/woff2" }
+$mime = @{ ".html"="text/html"; ".css"="text/css"; ".js"="application/javascript"; ".png"="image/png"; ".jpg"="image/jpeg"; ".gif"="image/gif"; ".svg"="image/svg+xml"; ".ico"="image/x-icon"; ".webp"="image/webp"; ".woff2"="font/woff2" }
 while ($listener.IsListening) {
     $context = $listener.GetContext()
     $req = $context.Request

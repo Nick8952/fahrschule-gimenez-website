@@ -9,7 +9,11 @@ export default function PriceGrid({ items }: { items: PriceRow[] }) {
       {items.map((row, i) => {
         const course = courseFor(row.courseKey);
         return (
-          <Reveal key={row.name} delay={(i % 3) * 60} className="card card-hover flex flex-col">
+          <Reveal
+            key={row.name}
+            delay={(i % 3) * 60}
+            className="card card-plate card-hover flex flex-col pt-8"
+          >
             <div className="flex items-center gap-3">
               <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-signal-wash text-signal">
                 <Icon name={(course?.icon as IconKey) ?? "car"} className="h-5 w-5" />

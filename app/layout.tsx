@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Figtree, DM_Mono } from "next/font/google";
+import { Fredoka, Karla, IBM_Plex_Mono } from "next/font/google";
 import { site } from "@/lib/data";
 import { absUrl } from "@/lib/site";
 import SiteHeader from "@/components/SiteHeader";
@@ -7,21 +7,21 @@ import SiteFooter from "@/components/SiteFooter";
 import { DrivingSchoolJsonLd } from "@/components/JsonLd";
 import "./globals.css";
 
-const display = Bricolage_Grotesque({
+const display = Fredoka({
   subsets: ["latin", "latin-ext"],
-  weight: ["500", "600", "700", "800"],
+  weight: ["500", "600", "700"],
   variable: "--font-display",
   display: "swap",
 });
-const body = Figtree({
+const body = Karla({
   subsets: ["latin", "latin-ext"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-body",
   display: "swap",
 });
-const mono = DM_Mono({
+const mono = IBM_Plex_Mono({
   subsets: ["latin", "latin-ext"],
-  weight: ["400", "500"],
+  weight: ["400", "500", "600"],
   variable: "--font-mono",
   display: "swap",
 });

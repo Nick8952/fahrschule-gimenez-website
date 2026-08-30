@@ -34,7 +34,12 @@ export default function Page() {
       <section className="section block-light">
         <div className="wrap grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {courses.items.map((c, i) => (
-            <Reveal key={c.key} delay={(i % 3) * 60} id={c.key} className="card card-hover">
+            <Reveal
+              key={c.key}
+              delay={(i % 3) * 60}
+              id={c.key}
+              className="card card-plate card-hover pt-8"
+            >
               <span className="grid h-12 w-12 place-items-center rounded-full bg-signal-wash text-signal">
                 <Icon name={c.icon as IconKey} className="h-6 w-6" />
               </span>

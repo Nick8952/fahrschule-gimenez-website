@@ -1,0 +1,8 @@
+{
+  "items": [
+    { "n": 1, "title": "Nothelfer & Antrag", "body": "Nothelferkurs besuchen und den Lernfahrausweis beantragen." },
+    { "n": 2, "title": "Theorie bestehen", "body": "Mit unserer Vorbereitung die Theorieprüfung sicher meistern." },
+    { "n": 3, "title": "Fahren & VKU", "body": "Praktische Fahrstunden nehmen und den Verkehrskundekurs absolvieren." },
+    { "n": 4, "title": "Prüfung & WAB", "body": "Praktische Prüfung bestehen – und mit dem WAB-Kurs sicher durch die Probezeit." }
+  ]
+}

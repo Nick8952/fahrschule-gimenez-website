@@ -1,0 +1,292 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================================
+   Fahrschule Roberto Gimenez — "Route Stamp"
+   Warmes Papier-Hell als Grundfläche, Signalrot als Hauptakzent, Gold als
+   Sekundärakzent, tiefes Routenblau nur als knappe dunkle Ausnahme-Fläche.
+   ========================================================================== */
+
+:root {
+  --paper: #faf4e8;
+  --paper-2: #f3ebdc;
+  --ink: #22190f;
+  --ink-soft: #6b5f52;
+  --signal: #c70400;
+  --signal-600: #a30300;
+  --signal-wash: #fbeae8;
+  --gold: #f4c300;
+  --gold-ink: #8a6a00;
+  --gold-bright: #fee600;
+  --route: #17204d;
+  --route-2: #1f2a5e;
+  --route-bright: #385bf9;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --header-h: 76px;
+}
+
+@layer base {
+  * {
+    border-color: color-mix(in srgb, var(--ink) 14%, transparent);
+  }
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: calc(var(--header-h) + 1.5rem);
+  }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: theme("fontFamily.display");
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    text-wrap: balance;
+  }
+  ::selection {
+    background: var(--signal);
+    color: #fff;
+  }
+  :focus-visible {
+    outline: 2px solid var(--signal);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  .wrap {
+    width: min(78rem, 92vw);
+    margin-inline: auto;
+  }
+  .wrap-eng {
+    width: min(44rem, 92vw);
+    margin-inline: auto;
+  }
+
+  /* Farbblöcke — hell ist die Grundfläche, "route" ist die knappe dunkle Ausnahme */
+  .block-light {
+    background: var(--paper);
+    color: var(--ink);
+  }
+  .block-route {
+    background: var(--route);
+    color: #e9ecf6;
+  }
+  .block-route h1,
+  .block-route h2,
+  .block-route h3 {
+    color: #fff;
+  }
+  .block-route p {
+    color: #aab2d4;
+  }
+  .section {
+    padding-block: clamp(3.5rem, 8vw, 7.5rem);
+  }
+
+  /* Eyebrow — DM-Mono-Label mit Signal-Strich */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-family: theme("fontFamily.mono");
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--signal);
+  }
+  .eyebrow::before {
+    content: "";
+    width: 1.8rem;
+    height: 2px;
+    background: var(--signal);
+  }
+  .block-route .eyebrow {
+    color: var(--gold);
+  }
+  .block-route .eyebrow::before {
+    background: var(--gold);
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 50px;
+    padding: 0.85rem 1.6rem;
+    font-family: theme("fontFamily.display");
+    font-weight: 700;
+    font-size: 0.98rem;
+    border: 1.5px solid transparent;
+    border-radius: theme("borderRadius.pill");
+    transition:
+      transform 0.2s var(--ease),
+      background 0.2s,
+      border-color 0.2s,
+      color 0.2s,
+      box-shadow 0.2s;
+  }
+  .btn:hover {
+    transform: translateY(-2px);
+  }
+  .btn-signal {
+    background: var(--signal);
+    color: #fff;
+    box-shadow: 0 10px 24px rgba(199, 4, 0, 0.28);
+  }
+  .btn-signal:hover {
+    background: var(--signal-600);
+  }
+  .btn-ghost {
+    border-color: currentColor;
+    color: var(--ink);
+  }
+  .btn-ghost:hover {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
+  .block-route .btn-ghost {
+    color: #fff;
+  }
+  .block-route .btn-ghost:hover {
+    background: #fff;
+    color: var(--route);
+    border-color: #fff;
+  }
+
+  /* Prose (Rechtstexte) */
+  .prose {
+    font-size: 1.02rem;
+    line-height: 1.75;
+    color: var(--ink-soft);
+  }
+  .prose > * + * {
+    margin-top: 1.05rem;
+  }
+  .prose h2 {
+    font-family: theme("fontFamily.display");
+    font-size: clamp(1.5rem, 3.2vw, 2.1rem);
+    color: var(--ink);
+    margin-top: 2.6rem;
+    letter-spacing: -0.02em;
+  }
+  .prose strong {
+    color: var(--ink);
+    font-weight: 700;
+  }
+  .prose ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 0.55rem;
+  }
+  .prose ul li {
+    padding-left: 1.5rem;
+    position: relative;
+  }
+  .prose ul li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 0.7rem;
+    height: 2px;
+    background: var(--signal);
+  }
+  .prose a {
+    color: var(--signal);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+
+  /* Karten */
+  .card {
+    background: #fff;
+    border: 1.5px solid color-mix(in srgb, var(--ink) 12%, transparent);
+    border-radius: theme("borderRadius.lg");
+    padding: 1.6rem;
+    transition:
+      transform 0.25s var(--ease),
+      border-color 0.25s,
+      box-shadow 0.25s;
+  }
+  .card-hover:hover {
+    transform: translateY(-4px);
+    border-color: var(--signal);
+    box-shadow: theme("boxShadow.m");
+  }
+
+  /* Scroll-Reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(1.6rem);
+    transition:
+      opacity 0.7s var(--ease),
+      transform 0.7s var(--ease);
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ---------- Route-Stamp-Motiv (Signatur) ---------- */
+
+  /* Gestrichelte "Strassen"-Linie, wie eine Fahrbahnmarkierung */
+  .route-line {
+    background-image: repeating-linear-gradient(
+      90deg,
+      var(--ink) 0 18px,
+      transparent 18px 34px
+    );
+    background-size: 100% 3px;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.22;
+  }
+  .block-route .route-line {
+    background-image: repeating-linear-gradient(
+      90deg,
+      var(--gold) 0 18px,
+      transparent 18px 34px
+    );
+    opacity: 0.5;
+  }
+  .route-line-v {
+    background-image: repeating-linear-gradient(
+      180deg,
+      var(--ink) 0 16px,
+      transparent 16px 30px
+    );
+    background-size: 3px 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.22;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

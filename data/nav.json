@@ -1,0 +1,33 @@
+{
+  "primary": [
+    { "label": "Start", "href": "/" },
+    { "label": "Angebote", "href": "/angebote" },
+    { "label": "Preise", "href": "/preise" },
+    { "label": "Über uns", "href": "/ueber-uns" },
+    { "label": "Ablauf", "href": "/ablauf" },
+    { "label": "Kontakt", "href": "/kontakt" }
+  ],
+  "ctaLabel": "Anfragen",
+  "ctaHref": "/kontakt",
+  "footerColumns": [
+    {
+      "title": "Seiten",
+      "links": [
+        { "label": "Start", "href": "/" },
+        { "label": "Angebote", "href": "/angebote" },
+        { "label": "Preise", "href": "/preise" },
+        { "label": "Über uns", "href": "/ueber-uns" },
+        { "label": "Ablauf", "href": "/ablauf" },
+        { "label": "Kontakt", "href": "/kontakt" }
+      ]
+    },
+    {
+      "title": "Rechtliches",
+      "links": [
+        { "label": "Impressum", "href": "/impressum" },
+        { "label": "Datenschutz", "href": "/datenschutz" },
+        { "label": "AGB", "href": "/agb" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,201 @@
+# Sveltia CMS – Konfiguration der Inhaltsbearbeitung für Fahrschule Gimenez.
+# Nach dem Anlegen der GitLab-OAuth-App die "app_id" unten eintragen (siehe HANDOVER.md).
+
+backend:
+  name: gitlab
+  repo: Nick-tbz/fahrschule-gimenez-website
+  branch: main
+  auth_type: pkce
+  app_id: "REPLACE-AFTER-OAUTH-APP-CREATED"
+
+publish_mode: simple
+site_url: https://fahrschule-gimenez-website-1a2f88.gitlab.io
+display_url: https://fahrschule-gimenez-website-1a2f88.gitlab.io
+logo_url: https://fahrschule-gimenez-website-1a2f88.gitlab.io/img/logo.png
+
+media_folder: "public/img/uploads"
+public_folder: "/img/uploads"
+
+i18n:
+  structure: single_file
+  locales: [de]
+
+collections:
+  # ─────────────────────────────────────────── Firmendaten & Einstellungen
+  - name: firmendaten
+    label: "Firmendaten & Einstellungen"
+    editor: { preview: false }
+    files:
+      - name: site
+        label: "Firmendaten"
+        file: "data/site.json"
+        fields:
+          - { name: demo, label: "Demo-Modus (Suchmaschinen ausschliessen)", widget: boolean, default: true, hint: "AN = die Seite wird von Google & Co. ausgeschlossen. Bei Go-Live AUS schalten." }
+          - { name: web3formsKey, label: "Web3Forms Zugriffs-Schlüssel", widget: string, hint: "Schlüssel von web3forms.com für info@gimenez.ch. Ohne Schlüssel funktioniert das Kontaktformular nicht." }
+          - { name: name, label: "Name", widget: string }
+          - { name: legalName, label: "Rechtlicher Name", widget: string }
+          - { name: owner, label: "Inhaber", widget: string }
+          - { name: tagline, label: "Slogan", widget: string }
+          - { name: blurb, label: "Kurzbeschreibung (Footer)", widget: text }
+          - name: address
+            label: "Adresse"
+            widget: object
+            fields:
+              - { name: street, label: "Strasse & Nr.", widget: string }
+              - { name: zip, label: "PLZ", widget: string }
+              - { name: city, label: "Ort", widget: string }
+          - name: phone
+            label: "Telefon"
+            widget: object
+            fields:
+              - { name: display, label: "Anzeige (z. B. 079 675 92 75)", widget: string }
+              - { name: tel, label: "Wählbar (z. B. +41796759275)", widget: string }
+          - { name: email, label: "E-Mail", widget: string }
+          - { name: languages, label: "Unterrichtssprachen", widget: list, field: { name: lang, label: "Sprache", widget: string } }
+          - name: vehicles
+            label: "Fahrzeuge"
+            widget: object
+            fields:
+              - { name: models, label: "Schulwagen (z. B. FIAT, SEAT)", widget: list, field: { name: m, widget: string } }
+              - { name: gearNote, label: "Getriebe-Hinweis", widget: string }
+          - { name: mapQuery, label: "Karten-Suchbegriff", widget: string }
+          - { name: themeColor, label: "Theme-Farbe (Hex)", widget: string }
+
+  # ─────────────────────────────────────────── Angebote & Preise
+  - name: angebote
+    label: "Angebote & Preise"
+    editor: { preview: false }
+    files:
+      - name: courses
+        label: "Angebote / Kurse"
+        file: "data/courses.json"
+        fields:
+          - name: items
+            label: "Angebote"
+            widget: list
+            fields:
+              - { name: key, label: "Schlüssel (nicht ändern)", widget: string }
+              - { name: title, label: "Titel", widget: string }
+              - { name: tag, label: "Kurz-Tag (z. B. «Kat. B1»)", widget: string }
+              - { name: icon, label: "Icon", widget: select, options: [car, taxi, moto, medical, book, theory, badge] }
+              - { name: description, label: "Beschreibung", widget: text }
+      - name: prices
+        label: "Preise"
+        file: "data/prices.json"
+        fields:
+          - { name: notice, label: "Hinweistext (Richtpreise)", widget: text }
+          - name: items
+            label: "Preiszeilen"
+            widget: list
+            fields:
+              - { name: courseKey, label: "Bezug zu Angebot (Schlüssel)", widget: string, required: false }
+              - { name: name, label: "Bezeichnung", widget: string }
+              - { name: description, label: "Beschreibung", widget: string }
+              - { name: note, label: "Zusatz (z. B. «ab»)", widget: string, required: false }
+              - { name: price, label: "Preis (CHF)", widget: number, value_type: int, required: false }
+              - { name: unit, label: "Einheit (z. B. «/ Lektion»)", widget: string, required: false }
+              - { name: inquiryOnly, label: "Nur auf Anfrage (kein Preis)", widget: boolean, default: false }
+          - { name: disclaimer, label: "Hinweis unter der Tabelle", widget: text }
+
+  # ─────────────────────────────────────────── Ablauf & FAQ
+  - name: ablauf
+    label: "Ablauf & FAQ"
+    editor: { preview: false }
+    files:
+      - name: steps
+        label: "4 Schritte zum Führerschein"
+        file: "data/steps.json"
+        fields:
+          - name: items
+            label: "Schritte"
+            widget: list
+            fields:
+              - { name: n, label: "Nummer", widget: number, value_type: int }
+              - { name: title, label: "Titel", widget: string }
+              - { name: body, label: "Text", widget: text }
+      - name: faq
+        label: "Häufige Fragen"
+        file: "data/faq.json"
+        fields:
+          - name: items
+            label: "Fragen"
+            widget: list
+            fields:
+              - { name: q, label: "Frage", widget: string }
+              - { name: a, label: "Antwort", widget: text }
+
+  # ─────────────────────────────────────────── Weitere Inhalte
+  - name: inhalte
+    label: "Weitere Inhalte"
+    editor: { preview: false }
+    files:
+      - name: reasons
+        label: "Das spricht für uns"
+        file: "data/reasons.json"
+        fields:
+          - { name: items, label: "Checkliste", widget: list, field: { name: point, widget: string } }
+      - name: nav
+        label: "Navigation & Footer"
+        file: "data/nav.json"
+        fields:
+          - name: primary
+            label: "Hauptmenü"
+            widget: list
+            fields:
+              - { name: label, label: "Beschriftung", widget: string }
+              - { name: href, label: "Ziel (z. B. /kontakt)", widget: string }
+          - { name: ctaLabel, label: "CTA-Button-Text", widget: string }
+          - { name: ctaHref, label: "CTA-Button-Ziel", widget: string }
+          - name: footerColumns
+            label: "Footer-Spalten"
+            widget: list
+            fields:
+              - { name: title, label: "Spaltentitel", widget: string }
+              - name: links
+                label: "Links"
+                widget: list
+                fields:
+                  - { name: label, widget: string }
+                  - { name: href, widget: string }
+
+  # ─────────────────────────────────────────── Seiten-Texte
+  - name: pages
+    label: "Seiten-Texte"
+    label_singular: "Seite"
+    folder: "content/pages"
+    extension: md
+    format: frontmatter
+    create: false
+    delete: false
+    identifier_field: seoTitle
+    editor: { preview: false }
+    fields:
+      - { name: seoTitle, label: "SEO-Titel (Browser-Tab & Google)", widget: string }
+      - { name: seoDescription, label: "SEO-Beschreibung", widget: text }
+      - { name: body, label: "Freitext (optional)", widget: markdown, required: false }
+      - name: hero
+        label: "Hero (Kopfbereich)"
+        widget: object
+        required: false
+        fields:
+          - { name: eyebrow, label: "Überzeile", widget: string, required: false }
+          - { name: title, label: "Titel", widget: string, required: false }
+          - { name: lead, label: "Lead-Text", widget: text, required: false }
+
+  # ─────────────────────────────────────────── Rechtstexte
+  - name: legal
+    label: "Rechtstexte"
+    label_singular: "Rechtstext"
+    folder: "content/legal"
+    extension: md
+    format: frontmatter
+    create: false
+    delete: false
+    identifier_field: title
+    editor: { preview: false }
+    fields:
+      - { name: title, label: "Titel", widget: string }
+      - { name: subtitle, label: "Untertitel", widget: text, required: false }
+      - { name: seoTitle, label: "SEO-Titel", widget: string, required: false }
+      - { name: seoDescription, label: "SEO-Beschreibung", widget: text, required: false }
+      - { name: body, label: "Inhalt", widget: markdown }

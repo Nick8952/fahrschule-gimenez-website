@@ -1,0 +1,9 @@
+{
+  "items": [
+    { "q": "Brauche ich zuerst den Nothelferkurs?", "a": "Ja. Der Nothelferkurs ist Voraussetzung, um den Lernfahrausweis zu beantragen. Danach folgt die Theorieprüfung." },
+    { "q": "Kann ich mit Automat fahren lernen?", "a": "Ja, Fahrstunden sind mit Handschaltung oder Automat möglich – ganz nach deinem Wunsch." },
+    { "q": "In welchen Sprachen wird unterrichtet?", "a": "In sechs Sprachen: Deutsch, English, Français, Italiano, Português und Español. Die Theorie ist in allen Theoriesprachen möglich." },
+    { "q": "Was ist der WAB-Kurs?", "a": "Die Weiterausbildung (WAB) ist für neue Fahrerinnen und Fahrer in der Probezeit vorgesehen und vertieft dein sicheres Verhalten im Strassenverkehr." },
+    { "q": "Bietet ihr auch Motorrad- und Taxi-Ausbildung an?", "a": "Ja. Neben Kat. B bieten wir Moto-Kurse sowie die Taxi-Ausbildung Kat. B1 an." }
+  ]
+}

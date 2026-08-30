@@ -8,8 +8,12 @@ desktop.ini
 .idea/
 *.swp
 
-# Node (falls später Build-Tools dazukommen)
+# Node / Next.js
 node_modules/
-dist/
+.next/
+out/
+_originals/
 .cache/
+.npm/
 *.log
+next-env.d.ts

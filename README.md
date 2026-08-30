@@ -1,80 +1,69 @@
-# Fahrschule Roberto Gimenez – neue Website
+# Fahrschule Roberto Gimenez – Website (v2, Next.js + CMS)
 
-Moderne, responsive und dynamische Website für die **Fahrschule Autoescola Roberto Gimenez**
-in Zürich. Neubau der bestehenden Seite (gimenez.ch) – **inhaltlich 1:1 übernommen**,
-aber mit zeitgemässem Design, Animationen, Mobil-Optimierung und lokalem SEO.
+Verkaufs-Demo für die **Fahrschule Autoescola Roberto Gimenez** in Zürich – Neubau der
+bestehenden Seite (gimenez.ch), inhaltlich 1:1 übernommen, mit modernem Design und einem
+Content-Management-System, damit der Kunde die Seite später **selbst** pflegen kann, ganz
+ohne Programmierkenntnisse.
 
 ## 🎯 Ziel
-„Vorher/Nachher"-Demo zum Verkauf an den Fahrschul-Inhaber: Die alte Seite ist inhaltlich
-dünn und optisch veraltet – diese Version zeigt, wie modern und kundenorientiert es aussehen kann.
 
-## ✨ Features
-- **Statische Website** – kein Build nötig, überall hostbar (GitLab Pages, Netlify, Hoststar …)
-- **Responsive** – optimiert für Mobil, Tablet und Desktop
-- **Dynamische Effekte** – Reveal-on-Scroll, animierte Zähler, Scroll-Fortschritt, Hover-Animationen, sanftes Scrollen, drehendes Lenkrad, mobile Navigation
-- **SEO** – Meta-Tags, Open Graph, `schema.org` `DrivingSchool` (Local Business), sprechende Titel
-- **Barrierearm** – Fokuszustände, `prefers-reduced-motion`, semantisches HTML
-- **Kontaktformular** – öffnet vorbefüllte E-Mail (kein Backend nötig)
+Nicht nur eine Demo zum Verkauf – sondern eine Seite, die der Kunde in 1–2 Jahren, wenn Nick
+nicht mehr involviert ist, selbst wie eine gewohnte Website-Baukasten-Lösung bearbeiten kann:
+Preise anpassen, Texte ändern, Kurse ergänzen – alles über ein Formular im Browser, kein Code.
 
-## 📁 Struktur (mehrseitige Website + Buchung)
+## 🧱 Tech-Stack
+
+- **Next.js 15** (App Router, TypeScript, statischer Export für GitLab Pages)
+- **Tailwind CSS** – Design-System "Route Stamp" (siehe unten)
+- **Framer Motion** – gezielte Animation (Hero-Stempel)
+- **Sveltia CMS** unter `/admin/` – Git-basiertes CMS, editierbar wie eine gewohnte Website,
+  speichert aber direkt als Commits im Repo (kein eigenes Backend nötig)
+
+## 🎨 Design: "Route Stamp"
+
+Signalrot aus dem echten Logo-Ring als Hauptakzent, warmes Papier-Hell als Grundfläche,
+tiefes Routenblau nur als knappe dunkle Fläche (Footer). Das echte Gimenez-Logo wird im Hero
+als schräg gestempeltes Reise-Stempel-Motiv inszeniert; gestrichelte "Routen"-Linien
+verbinden die Angebote wie Stationen auf einer Strecke (`RouteStamp`, `RouteStrip`,
+`RouteSteps`). Typografie: Bricolage Grotesque (Display) + Figtree (Text) + DM Mono
+(Preise/Kürzel).
+
+## 📁 Struktur
+
 ```
-fahrschule-gimenez-website/
-├── index.html              # Startseite
-├── angebote.html           # Angebote & Kurse
-├── preise.html             # Preise & Pakete (mit "In den Warenkorb")
-├── ueber-uns.html          # Über Roberto Gimenez
-├── ablauf.html             # In 4 Schritten zum Führerschein + FAQ
-├── kontakt.html            # Kontakt, Formular & Karte
-├── warenkorb.html          # Warenkorb
-├── kasse.html              # Kasse / Buchungsanfrage
-├── bestaetigung.html       # Bestätigung + E-Mail-Übermittlung
-├── impressum.html          # Impressum (Vorlage)
-├── datenschutz.html        # Datenschutz (revDSG-Vorlage)
-├── agb.html                # AGB (Vorlage)
-├── robots.txt · sitemap.xml # SEO
-├── css/style.css           # Design & Effekte (gemeinsam für alle Seiten)
-├── js/main.js              # Interaktivität + Warenkorb-Logik
-├── assets/img/             # favicon.svg + archivierte Original-Grafiken
-├── INHALT-ORIGINAL.md      # Komplettes Inhalts-Archiv der alten Seite
-├── WEITER-ZUHAUSE.md       # Übergabe & Weiterarbeits-Prompt
-└── README.md
+app/            Next.js App Router – eine Route pro Seite
+components/     UI-Bausteine (Header, Footer, RouteStamp/Strip/Steps, Formular, …)
+content/pages/  SEO-Texte & Hero-Texte je Seite (Markdown-Frontmatter)
+content/legal/  Impressum, Datenschutz, AGB (Markdown)
+data/           Strukturierte Inhalte als JSON (Firmendaten, Kurse, Preise, FAQ, Navigation)
+lib/            Typisierter Zugriff auf data/*.json und content/**/*.md
+public/admin/   Sveltia CMS (vendored, kein CDN nötig)
 ```
 
-## 🛒 Buchungs-/Checkout-Ablauf
-`preise.html` (In den Warenkorb) → `warenkorb.html` (Menge/Entfernen) → `kasse.html`
-(Kontaktdaten, Zahlungsart, AGB) → `bestaetigung.html` (Referenznummer + Button, der die
-Anfrage per vorbereiteter **E-Mail** an `info@gimenez.ch` sendet). Der Warenkorb lebt im
-Browser (localStorage); es findet **keine Online-Zahlung** statt – bewusst als unverbindliche
-Buchungsanfrage konzipiert (kann später an ein echtes Zahlungssystem angebunden werden).
+## ✏️ Inhalte bearbeiten
 
-## 🚀 Lokal ansehen
-Einfach `index.html` im Browser öffnen – oder ein kleiner lokaler Server:
+Siehe [`HANDOVER.md`](HANDOVER.md) für die vollständige Anleitung (inkl. der zwei einmaligen
+Einrichtungsschritte: GitLab-OAuth-App fürs CMS-Login, Web3Forms-Schlüssel fürs
+Kontaktformular).
+
+## 🚀 Lokal entwickeln
 
 ```bash
-# Python
-python -m http.server 8080
-# danach: http://localhost:8080
-
-# oder Node
-npx serve .
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # erzeugt den statischen Export in out/
 ```
 
 ## ☁️ Deployment
-- **GitLab Pages:** `.gitlab-ci.yml` mit einem `pages`-Job (public/) hinzufügen
-- **Netlify / Vercel:** Repo verbinden, Root als Publish-Verzeichnis
-- **Klassisches Hosting (Hoststar):** Dateien per FTP hochladen
 
-## 📝 Inhalt & Datenquelle
-Alle Inhalte stammen 1:1 von der bestehenden Seite (gimenez.ch). Der vollständige
-Original-Inhalt ist in [`INHALT-ORIGINAL.md`](INHALT-ORIGINAL.md) dokumentiert, damit
-nichts verloren geht.
+GitLab Pages via `.gitlab-ci.yml` (`node:22-alpine`, `npm ci && npm run build`, `out/` →
+`public/`). Live-URL: `https://fahrschule-gimenez-website-1a2f88.gitlab.io/`.
 
-### Noch offen (vom Kunden zu ergänzen)
-- Preise / Tarife
-- Öffnungszeiten
-- Echte Fotos (Fahrlehrer, Fahrzeug)
-- Kundenbewertungen
-- Konkrete Kursdaten
+## 📜 Historie
+
+Die ursprüngliche handgebaute statische Version (HTML/CSS/JS, mit Warenkorb-Checkout-Flow)
+ist unter dem Branch `archive/v1-static` bzw. Tag `v1-static-demo` archiviert.
 
 ---
-*Neue Website – erstellt als Verkaufs-Demo. Kontakt der Fahrschule: +41 79 675 92 75 · info@gimenez.ch · Seebahnstrasse 127, 8003 Zürich*
+*Neue Website – erstellt als Verkaufs-Demo. Kontakt der Fahrschule: +41 79 675 92 75 ·
+info@gimenez.ch · Seebahnstrasse 127, 8003 Zürich*

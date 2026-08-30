@@ -1,0 +1,11 @@
+{
+  "items": [
+    { "key": "nothelfer", "title": "Nothelferkurs", "tag": "Obligatorisch", "icon": "medical", "description": "Der obligatorische Nothelferkurs – Voraussetzung für den Lernfahrausweis. Bei uns kompakt und verständlich." },
+    { "key": "theorie", "title": "Theorie", "tag": "Prüfungsvorbereitung", "icon": "theory", "description": "Gezielte Vorbereitung auf die Theorieprüfung – in allen Theoriesprachen, damit du beim ersten Anlauf bestehst." },
+    { "key": "vku", "title": "Verkehrskunde (VKU)", "tag": "VKU", "icon": "book", "description": "Der Verkehrskundeunterricht bereitet dich auf die Gefahren im Strassenverkehr vor – Pflicht für alle Neulenker." },
+    { "key": "fahrunterricht-b", "title": "Fahrunterricht Kat. B", "tag": "Handschaltung & Automat", "icon": "car", "description": "Fahrstunden für Personenwagen – mit Handschaltung oder Automat, individuell auf dein Tempo." },
+    { "key": "wab", "title": "WAB-Kurs", "tag": "Weiterausbildung", "icon": "badge", "description": "Die Weiterausbildung (WAB) für frischgebackene Fahrerinnen und Fahrer – sicher durch die Probezeit." },
+    { "key": "taxi-b1", "title": "Taxi-Ausbildung B1", "tag": "Kat. B1", "icon": "taxi", "description": "Professionelle Vorbereitung für die Taxi-Ausbildung der Kategorie B1." },
+    { "key": "moto", "title": "Moto-Kurse", "tag": "Motorrad", "icon": "moto", "description": "Motorrad-Kurse für sicheres Fahren auf zwei Rädern." }
+  ]
+}

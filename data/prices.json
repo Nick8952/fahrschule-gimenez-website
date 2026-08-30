@@ -1,0 +1,14 @@
+{
+  "notice": "Richtpreise. Die hier gezeigten Preise sind Beispielwerte zur Orientierung. Die definitiven Tarife bestätigt dir die Fahrschule bei der Terminvereinbarung. Bezahlt wird bequem per Rechnung, TWINT oder vor Ort – eine Anfrage ist unverbindlich und noch keine Zahlung.",
+  "items": [
+    { "courseKey": "fahrunterricht-b", "name": "Fahrstunde Kat. B", "description": "Praktische Fahrstunde (45 Min.) – Handschaltung oder Automat, in deinem Tempo.", "note": "ab", "price": 95, "unit": "/ Lektion", "inquiryOnly": false },
+    { "courseKey": "fahrunterricht-b", "name": "Schnupper-Fahrstunde", "description": "Zum Kennenlernen: erste Fahrstunde für alle, die unverbindlich starten wollen.", "price": 90, "unit": "/ einmalig", "inquiryOnly": false },
+    { "courseKey": "nothelfer", "name": "Nothelferkurs", "description": "Der obligatorische Nothelferkurs – Voraussetzung für den Lernfahrausweis.", "price": 120, "unit": "/ Kurs", "inquiryOnly": false },
+    { "courseKey": "vku", "name": "Verkehrskunde (VKU)", "description": "Verkehrskundeunterricht (4 Lektionen) – Pflicht für alle Neulenker:innen.", "price": 220, "unit": "/ 4 Lektionen", "inquiryOnly": false },
+    { "courseKey": "theorie", "name": "Theorie-Vorbereitung", "description": "Gezielte Vorbereitung auf die Theorieprüfung – in allen Theoriesprachen.", "note": "ab", "price": 50, "unit": "/ Lektion", "inquiryOnly": false },
+    { "courseKey": "wab", "name": "WAB-Kurs", "description": "Weiterausbildung (1 Tag) – sicher durch die Probezeit.", "price": 350, "unit": "/ Kurstag", "inquiryOnly": false },
+    { "courseKey": "moto", "name": "Moto Grundkurs", "description": "Motorrad-Grundkurs für sicheres Fahren auf zwei Rädern.", "note": "ab", "price": 180, "unit": "/ Kurs", "inquiryOnly": false },
+    { "courseKey": "taxi-b1", "name": "Taxi-Ausbildung B1", "description": "Individuelle Vorbereitung für die Taxi-Ausbildung Kat. B1 – Paketpreis je nach Bedarf.", "inquiryOnly": true }
+  ],
+  "disclaimer": "Bezahlt wird bequem per Rechnung, TWINT oder vor Ort. Eine Anfrage ist unverbindlich und noch keine Zahlung."
+}

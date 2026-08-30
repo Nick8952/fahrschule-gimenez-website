@@ -1,0 +1,16 @@
+{
+  "demo": true,
+  "name": "Fahrschule Roberto Gimenez",
+  "legalName": "Fahrschule – Autoescola Roberto Gimenez",
+  "owner": "Roberto Gimenez",
+  "tagline": "Deine Fahrschule in Zürich",
+  "blurb": "Deine persönliche Fahrschule im Herzen von Zürich – mehrsprachig, geduldig und mit vollem Kursangebot.",
+  "address": { "street": "Seebahnstrasse 127", "zip": "8003", "city": "Zürich" },
+  "phone": { "display": "+41 79 675 92 75", "tel": "+41796759275" },
+  "email": "info@gimenez.ch",
+  "languages": ["Deutsch", "English", "Français", "Italiano", "Português", "Español"],
+  "vehicles": { "models": ["FIAT", "SEAT"], "gearNote": "Handschaltung – Automat auf Wunsch möglich" },
+  "mapQuery": "Seebahnstrasse 127 8003 Zürich",
+  "themeColor": "#17204D",
+  "web3formsKey": "REPLACE-WITH-WEB3FORMS-ACCESS-KEY"
+}

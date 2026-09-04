@@ -84,7 +84,7 @@ export default function Page() {
               <a href={`tel:${site.phone.tel}`} className="btn bg-white !text-signal">
                 {site.phone.display}
               </a>
-              <Link href="/kontakt" className="btn btn-ghost !text-white">
+              <Link href="/kontakt" className="btn !border-white !bg-transparent !text-white">
                 Beratung anfragen
               </Link>
             </div>

@@ -12,7 +12,7 @@ export default function PriceGrid({ items }: { items: PriceRow[] }) {
           <Reveal
             key={row.name}
             delay={(i % 3) * 60}
-            className="card card-plate card-hover flex flex-col pt-8"
+            className="card card-hover flex flex-col"
           >
             <div className="flex items-center gap-3">
               <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-signal-wash text-signal">

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fredoka, Karla, IBM_Plex_Mono } from "next/font/google";
+import { IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
 import { site } from "@/lib/data";
 import { absUrl } from "@/lib/site";
 import SiteHeader from "@/components/SiteHeader";
@@ -7,16 +7,13 @@ import SiteFooter from "@/components/SiteFooter";
 import { DrivingSchoolJsonLd } from "@/components/JsonLd";
 import "./globals.css";
 
-const display = Fredoka({
-  subsets: ["latin", "latin-ext"],
-  weight: ["500", "600", "700"],
-  variable: "--font-display",
-  display: "swap",
-});
-const body = Karla({
+// Eine durchgängige Schriftfamilie für Überschriften UND Fliesstext (nur
+// unterschiedliche Schnitte) — bewusst diszipliniert statt Font-Pairing,
+// das liest seriöser/institutioneller als eine verspielte Mischung.
+const sans = IBM_Plex_Sans({
   subsets: ["latin", "latin-ext"],
   weight: ["400", "500", "600", "700"],
-  variable: "--font-body",
+  variable: "--font-sans",
   display: "swap",
 });
 const mono = IBM_Plex_Mono({
@@ -48,7 +45,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="de" className={`${display.variable} ${body.variable} ${mono.variable}`}>
+    <html lang="de" className={`${sans.variable} ${mono.variable}`}>
       <body className="font-body text-step-0">
         <a
           href="#inhalt"

@@ -3,10 +3,11 @@
 @tailwind utilities;
 
 /* ============================================================================
-   Fahrschule Roberto Gimenez — "Verkehrsschild"
-   Signaletik-System: Schilder-Plaketten mit hartem Versatz-Schatten (statt
-   weichem Blur), Verbotsrot/Warnschild-Gold/Vorschriftszeichen-Blau, runde
-   Fredoka-Grosstypo, Karla im Fliesstext, IBM Plex Mono für Preise/Kürzel.
+   Fahrschule Roberto Gimenez — "Verkehrsschild" (seriös)
+   Verbotsrot/Warnschild-Gold/Vorschriftszeichen-Blau vom echten Logo,
+   zurückhaltend und institutionell umgesetzt: weiche dezente Schatten,
+   moderate Rundung, IBM Plex Sans durchgängig, IBM Plex Mono für
+   Preise/Kürzel.
    ========================================================================== */
 
 :root {
@@ -45,9 +46,9 @@
   h2,
   h3 {
     font-family: theme("fontFamily.display");
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    line-height: 1.02;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    line-height: 1.12;
     text-wrap: balance;
   }
   ::selection {
@@ -91,66 +92,59 @@
     padding-block: clamp(3.5rem, 8vw, 7.5rem);
   }
 
-  /* Schild-Badge — kleines Plakette-Etikett statt Mono-Eyebrow-mit-Strich */
+  /* Eyebrow — schlichtes Balken-Label, wie ein Aktenreiter/Bericht-Vermerk */
   .eyebrow {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    background: var(--gold-wash);
-    color: var(--gold-ink);
-    padding: 0.4rem 0.9rem 0.4rem 0.7rem;
-    border-radius: theme("borderRadius.pill");
-    border: 1.5px solid color-mix(in srgb, var(--gold-ink) 25%, transparent);
+    gap: 0.6rem;
+    color: var(--route);
     font-family: theme("fontFamily.body");
-    font-weight: 700;
-    font-size: 0.82rem;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.01em;
   }
   .eyebrow::before {
     content: "";
-    width: 0.55rem;
-    height: 0.55rem;
-    border-radius: 50%;
+    width: 3px;
+    height: 1.1em;
     background: var(--signal);
     flex: 0 0 auto;
   }
   .block-route .eyebrow {
-    background: color-mix(in srgb, var(--gold) 22%, transparent);
-    color: var(--gold-bright, var(--gold));
-    border-color: color-mix(in srgb, var(--gold) 45%, transparent);
+    color: var(--gold);
   }
 
-  /* Buttons — wie eine angeschraubte Schilder-Plakette: harter Schatten,
-     beim Drücken "flach gegen die Wand" */
+  /* Buttons — klar, institutionell: dezenter Schatten, kein Comic-Bounce */
   .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.55rem;
     min-height: 50px;
-    padding: 0.85rem 1.5rem;
+    padding: 0.85rem 1.6rem;
     font-family: theme("fontFamily.display");
     font-weight: 600;
-    font-size: 1.02rem;
-    border: 2.5px solid var(--ink);
+    font-size: 1rem;
+    border: 1.5px solid transparent;
     border-radius: theme("borderRadius.DEFAULT");
     box-shadow: theme("boxShadow.s");
     transition:
-      transform 0.15s var(--ease),
-      box-shadow 0.15s var(--ease),
+      transform 0.2s var(--ease),
+      box-shadow 0.2s var(--ease),
       background 0.2s,
-      color 0.2s;
+      color 0.2s,
+      border-color 0.2s;
   }
   .btn:hover {
-    transform: translate(-1px, -1px);
+    transform: translateY(-1px);
     box-shadow: theme("boxShadow.m");
   }
   .btn:active {
-    transform: translate(2px, 2px);
-    box-shadow: none;
+    transform: translateY(0);
+    box-shadow: theme("boxShadow.s");
   }
   .btn-signal {
     background: var(--signal);
-    border-color: var(--signal-600);
     color: #fff;
   }
   .btn-signal:hover {
@@ -159,10 +153,17 @@
   .btn-ghost {
     background: #fff;
     color: var(--ink);
+    border-color: color-mix(in srgb, var(--ink) 20%, transparent);
+  }
+  .btn-ghost:hover {
+    border-color: var(--ink);
   }
   .block-route .btn-ghost {
     background: transparent;
     color: #fff;
+    border-color: color-mix(in srgb, #fff 45%, transparent);
+  }
+  .block-route .btn-ghost:hover {
     border-color: #fff;
   }
 
@@ -213,10 +214,10 @@
     text-underline-offset: 0.2em;
   }
 
-  /* Schild-Plaketten (Karten) — harter Versatz-Schatten statt Blur */
+  /* Karten — klarer Rand, dezenter Schatten */
   .card {
     background: #fff;
-    border: 2px solid color-mix(in srgb, var(--ink) 16%, transparent);
+    border: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
     border-radius: theme("borderRadius.lg");
     padding: 1.7rem;
     box-shadow: theme("boxShadow.s");
@@ -226,31 +227,9 @@
       border-color 0.2s;
   }
   .card-hover:hover {
-    transform: translate(-2px, -2px);
+    transform: translateY(-3px);
     box-shadow: theme("boxShadow.m");
-    border-color: var(--signal);
-  }
-
-  /* Bolzen-Löcher — kleines Detail für die "Angeschraubtes-Schild"-Karten */
-  .card-plate {
-    position: relative;
-    border-radius: theme("borderRadius.DEFAULT");
-  }
-  .card-plate::before,
-  .card-plate::after {
-    content: "";
-    position: absolute;
-    top: 0.8rem;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: color-mix(in srgb, var(--ink) 22%, transparent);
-  }
-  .card-plate::before {
-    left: 0.8rem;
-  }
-  .card-plate::after {
-    right: 0.8rem;
+    border-color: color-mix(in srgb, var(--signal) 40%, transparent);
   }
 
   /* Scroll-Reveal */

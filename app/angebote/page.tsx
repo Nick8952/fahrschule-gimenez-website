@@ -38,7 +38,7 @@ export default function Page() {
               key={c.key}
               delay={(i % 3) * 60}
               id={c.key}
-              className="card card-plate card-hover pt-8"
+              className="card card-hover"
             >
               <span className="grid h-12 w-12 place-items-center rounded-full bg-signal-wash text-signal">
                 <Icon name={c.icon as IconKey} className="h-6 w-6" />

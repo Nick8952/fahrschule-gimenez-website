@@ -11,7 +11,7 @@ import { asset } from "@/lib/site";
  */
 export default function RouteStamp({
   size = 320,
-  tilt = -7,
+  tilt = -3,
 }: {
   size?: number;
   tilt?: number;
@@ -22,10 +22,10 @@ export default function RouteStamp({
     <motion.div
       className="relative mx-auto"
       style={{ width: size, height: size, rotate: tilt }}
-      initial={{ scale: 1.18, rotate: tilt + 6, opacity: 0 }}
-      whileInView={{ scale: 1, rotate: tilt, opacity: 1 }}
+      initial={{ scale: 1.04, opacity: 0 }}
+      whileInView={{ scale: 1, opacity: 1 }}
       viewport={{ once: true, amount: 0.6 }}
-      transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
     >
       {/* Gestrichelter Stempelring mit umlaufendem Mikrotext */}
       <svg

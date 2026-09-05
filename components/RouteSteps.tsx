@@ -2,8 +2,6 @@ import Reveal from "./Reveal";
 
 type Step = { n: number; title: string; body: string };
 
-const tilts = [-4, 3, -3, 4];
-
 /** Vertikale Variante des Routen-Motivs für die 4 Schritte zum Führerschein. */
 export default function RouteSteps({ steps }: { steps: Step[] }) {
   return (
@@ -14,10 +12,7 @@ export default function RouteSteps({ steps }: { steps: Step[] }) {
       />
       {steps.map((s, i) => (
         <Reveal key={s.n} delay={i * 70} className="relative">
-          <span
-            className="absolute -left-[4.5rem] top-0 grid h-14 w-14 place-items-center rounded-full border-2 border-dashed border-signal bg-paper font-display text-xl font-extrabold text-signal shadow-s sm:-left-24"
-            style={{ transform: `rotate(${tilts[i % tilts.length]}deg)` }}
-          >
+          <span className="absolute -left-[4.5rem] top-0 grid h-14 w-14 place-items-center rounded-full border-2 border-signal bg-paper font-display text-xl font-bold text-signal shadow-s sm:-left-24">
             {s.n}
           </span>
           <h3 className="text-step-1 font-extrabold">{s.title}</h3>

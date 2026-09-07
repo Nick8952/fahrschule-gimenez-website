@@ -1,10 +1,12 @@
 /** @type {import('next').NextConfig} */
 
-// Die Seite läuft auf der GitLab-Pages-Unique-Domain (Root, kein Pfadpräfix):
-//   https://fahrschule-gimenez-website-1a2f88.gitlab.io/
-// Bei einer eigenen Domain (gimenez.ch) nur SITE_ORIGIN anpassen.
+// Deploy-Ziel: Vercel (kein Pfadpräfix, Projekt läuft auf der eigenen Domain
+// <projekt>.vercel.app). SITE_ORIGIN nach dem ersten Vercel-Deploy auf die
+// tatsächlich zugewiesene URL anpassen (Vercel hängt ggf. einen Suffix an,
+// falls der Name schon vergeben ist). Bei eigener Domain (gimenez.ch)
+// ebenfalls hier anpassen.
 const BASE_PATH = "";
-const SITE_ORIGIN = "https://fahrschule-gimenez-website-1a2f88.gitlab.io";
+const SITE_ORIGIN = "https://fahrschule-gimenez-website.vercel.app";
 
 const nextConfig = {
   output: "export",

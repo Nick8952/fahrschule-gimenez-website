@@ -56,13 +56,15 @@ npm run build    # erzeugt den statischen Export in out/
 
 ## ☁️ Deployment
 
-GitLab Pages via `.gitlab-ci.yml` (`node:22-alpine`, `npm ci && npm run build`, `out/` →
-`public/`). Live-URL: `https://fahrschule-gimenez-website-1a2f88.gitlab.io/`.
+**Vercel**, verbunden mit `github.com/Nick8952/fahrschule-gimenez-website` – baut
+automatisch bei jedem Push (auch bei CMS-Commits), keine eigene CI-Konfiguration nötig.
 
 ## 📜 Historie
 
 Die ursprüngliche handgebaute statische Version (HTML/CSS/JS, mit Warenkorb-Checkout-Flow)
-ist unter dem Branch `archive/v1-static` bzw. Tag `v1-static-demo` archiviert.
+sowie eine erste Next.js-Fassung mit GitLab-Hosting sind unter
+`gitlab.com/Nick-tbz/fahrschule-gimenez-website` als eingefrorene Sicherungskopie
+erhalten geblieben (dort Branch `archive/v1-static` für die ganz ursprüngliche Version).
 
 ---
 *Neue Website – erstellt als Verkaufs-Demo. Kontakt der Fahrschule: +41 79 675 92 75 ·

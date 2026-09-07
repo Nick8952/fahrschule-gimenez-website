@@ -1,17 +1,17 @@
 # Sveltia CMS – Konfiguration der Inhaltsbearbeitung für Fahrschule Gimenez.
-# Nach dem Anlegen der GitLab-OAuth-App die "app_id" unten eintragen (siehe HANDOVER.md).
+# GitHub-Backend braucht einen kleinen OAuth-Vermittler (Cloudflare Worker),
+# siehe HANDOVER.md Abschnitt 1 für die genauen Schritte.
 
 backend:
-  name: gitlab
-  repo: Nick-tbz/fahrschule-gimenez-website
+  name: github
+  repo: Nick8952/fahrschule-gimenez-website
   branch: main
-  auth_type: pkce
-  app_id: "REPLACE-AFTER-OAUTH-APP-CREATED"
+  base_url: https://REPLACE-WITH-SVELTIA-AUTH-WORKER-URL
 
 publish_mode: simple
-site_url: https://fahrschule-gimenez-website-1a2f88.gitlab.io
-display_url: https://fahrschule-gimenez-website-1a2f88.gitlab.io
-logo_url: https://fahrschule-gimenez-website-1a2f88.gitlab.io/img/logo.png
+site_url: https://fahrschule-gimenez-website.vercel.app
+display_url: https://fahrschule-gimenez-website.vercel.app
+logo_url: https://fahrschule-gimenez-website.vercel.app/img/logo.png
 
 media_folder: "public/img/uploads"
 public_folder: "/img/uploads"

@@ -58,7 +58,7 @@
     color: #fff;
   }
   :focus-visible {
-    outline: 3px solid var(--route);
+    outline: 3px solid var(--signal);
     outline-offset: 3px;
     border-radius: 4px;
   }
@@ -99,7 +99,7 @@
     display: inline-flex;
     align-items: center;
     gap: 0.6rem;
-    color: var(--route);
+    color: var(--signal);
     font-family: theme("fontFamily.body");
     font-weight: 600;
     font-size: 0.85rem;
@@ -216,7 +216,7 @@
     background: var(--signal);
   }
   .prose a {
-    color: var(--route);
+    color: var(--signal);
     text-decoration: underline;
     text-decoration-thickness: 1.5px;
     text-underline-offset: 0.2em;

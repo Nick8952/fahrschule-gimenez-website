@@ -2,12 +2,13 @@ import type { Config } from "tailwindcss";
 
 /* ============================================================================
    Fahrschule Roberto Gimenez — Design-System "Verkehrsschild" (seriös)
-   Verbotsrot vom echten Logo-Ring, Warnschild-Gold, Vorschriftszeichen-Blau
-   als knappe dunkle Ausnahme. Zurückhaltende, institutionelle Umsetzung:
-   weiche, dezente Schatten statt Comic-Versatz-Schatten, moderate Rundung
-   statt verspielter Bubble-Formen. EINE durchgängige Schriftfamilie
-   (IBM Plex Sans) für Überschriften und Fliesstext, IBM Plex Mono für
-   Preise/Kürzel — liest seriös, institutionell, vertrauenswürdig.
+   Verbotsrot + Warnschild-Gold vom echten Logo-Ring, jetzt zusätzlich auf das
+   Hero-Studiofoto abgestimmt (Fahrschulwagen vor rot-goldenem Farbverlauf,
+   dunkler Asphaltboden) — die dunkle Akzentfläche ist deshalb ein warmes
+   Asphalt-Schwarzbraun statt Vorschriftszeichen-Blau. Zurückhaltende,
+   institutionelle Umsetzung: weiche, dezente Schatten statt Comic-Versatz-
+   Schatten. EINE durchgängige Schriftfamilie (IBM Plex Sans) für
+   Überschriften und Fliesstext, IBM Plex Mono für Preise/Kürzel.
    ========================================================================== */
 
 const config: Config = {
@@ -21,7 +22,7 @@ const config: Config = {
       colors: {
         signal: { DEFAULT: "#D6001C", 600: "#A50016", wash: "#FCE4E6" },
         gold: { DEFAULT: "#FFC629", ink: "#7A5900", bright: "#FFE066", wash: "#FFF2C4" },
-        route: { DEFAULT: "#123C7A", 2: "#17529E", bright: "#3B82F6", wash: "#E6EDF7" },
+        route: { DEFAULT: "#2A1210", 2: "#3D1B17", bright: "#FF7A45", wash: "#F4E9E6" },
         paper: { DEFAULT: "#FFF7E8", 2: "#FCEFD2" },
         ink: { DEFAULT: "#201A12", soft: "#6E6152" },
         muted: { DEFAULT: "#6E6152" },
@@ -53,7 +54,7 @@ const config: Config = {
       boxShadow: {
         s: "0 1px 2px rgba(32,26,18,.06), 0 2px 10px rgba(32,26,18,.06)",
         m: "0 8px 20px rgba(32,26,18,.09), 0 20px 45px rgba(32,26,18,.07)",
-        l: "0 20px 50px rgba(18,60,122,.16), 0 40px 90px rgba(18,60,122,.12)",
+        l: "0 20px 50px rgba(42,18,16,.22), 0 40px 90px rgba(42,18,16,.16)",
       },
       transitionTimingFunction: {
         smooth: "cubic-bezier(0.22, 1, 0.36, 1)",

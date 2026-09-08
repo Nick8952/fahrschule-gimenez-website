@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { getPage } from "@/lib/content";
 import { pageMeta } from "@/lib/seo";
 import { site, courses, reasons } from "@/lib/data";
+import { asset } from "@/lib/site";
 import RouteStamp from "@/components/RouteStamp";
 import RouteStrip from "@/components/RouteStrip";
 import Reveal from "@/components/Reveal";
@@ -25,12 +27,23 @@ export default function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="block-light relative overflow-hidden">
-        <div className="wrap grid items-center gap-12 pb-16 pt-14 sm:pb-24 sm:pt-20 lg:grid-cols-[1.2fr_.8fr]">
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 -z-10">
+          <Image
+            src={asset("/img/hero-car.jpg")}
+            alt=""
+            fill
+            priority
+            unoptimized
+            className="hero-photo object-cover object-[38%_42%]"
+          />
+          <div className="hero-scrim absolute inset-0" />
+        </div>
+        <div className="wrap grid items-center gap-12 pb-20 pt-14 sm:pb-32 sm:pt-20 lg:grid-cols-[1.2fr_.8fr]">
           <Reveal>
-            <p className="eyebrow mb-5">{fm.hero.eyebrow}</p>
-            <h1 className="max-w-[18ch] text-step-5 font-extrabold">{fm.hero.title}</h1>
-            <p className="mt-6 max-w-[52ch] text-step-1 text-ink-soft">{fm.hero.lead}</p>
+            <p className="eyebrow eyebrow-on-dark mb-5">{fm.hero.eyebrow}</p>
+            <h1 className="max-w-[18ch] text-step-5 font-extrabold text-white">{fm.hero.title}</h1>
+            <p className="mt-6 max-w-[52ch] text-step-1 text-white/80">{fm.hero.lead}</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href={`tel:${site.phone.tel}`} className="btn btn-signal">
                 <Icon name="phone" className="h-4 w-4" /> {site.phone.display}

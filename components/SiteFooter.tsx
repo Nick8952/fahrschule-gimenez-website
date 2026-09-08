@@ -15,7 +15,7 @@ export default function SiteFooter() {
           <h2 className="max-w-[16ch] text-step-4 font-extrabold text-white">
             Starte deinen Weg zum Führerschein
           </h2>
-          <p className="mt-5 max-w-[46ch] text-[#aab2d4]">
+          <p className="mt-5 max-w-[46ch] text-[#CDB0A8]">
             Ruf einfach an oder schreib uns eine Nachricht – wir beraten dich gerne und finden
             gemeinsam den passenden Kurs.
           </p>
@@ -31,7 +31,7 @@ export default function SiteFooter() {
       </section>
 
       {/* Footer */}
-      <div className="bg-route-2 text-[#aab2d4]">
+      <div className="bg-route-2 text-[#CDB0A8]">
         <div className="wrap py-14">
           <div className="grid gap-10 md:grid-cols-[1.3fr_1fr_1fr_1.2fr]">
             <div>
@@ -52,7 +52,7 @@ export default function SiteFooter() {
 
             {nav.footerColumns.map((col) => (
               <div key={col.title}>
-                <h3 className="mb-3.5 font-mono text-[0.7rem] uppercase tracking-[0.16em] text-[#aab2d4]/70">
+                <h3 className="mb-3.5 font-mono text-[0.7rem] uppercase tracking-[0.16em] text-[#CDB0A8]/70">
                   {col.title}
                 </h3>
                 <ul className="grid gap-2 text-[0.92rem]">
@@ -68,7 +68,7 @@ export default function SiteFooter() {
             ))}
 
             <div>
-              <h3 className="mb-3.5 font-mono text-[0.7rem] uppercase tracking-[0.16em] text-[#aab2d4]/70">
+              <h3 className="mb-3.5 font-mono text-[0.7rem] uppercase tracking-[0.16em] text-[#CDB0A8]/70">
                 Kontakt
               </h3>
               <address className="grid gap-1.5 not-italic text-[0.92rem]">

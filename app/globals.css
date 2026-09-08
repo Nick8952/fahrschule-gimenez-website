@@ -4,8 +4,10 @@
 
 /* ============================================================================
    Fahrschule Roberto Gimenez — "Verkehrsschild" (seriös)
-   Verbotsrot/Warnschild-Gold/Vorschriftszeichen-Blau vom echten Logo,
-   zurückhaltend und institutionell umgesetzt: weiche dezente Schatten,
+   Verbotsrot/Warnschild-Gold vom echten Logo, jetzt auf das Hero-Studiofoto
+   abgestimmt (Fahrschulwagen vor rot-goldenem Verlauf, dunkler Asphalt) —
+   die dunkle Akzentfläche ist warmes Asphalt-Schwarzbraun statt Blau.
+   Zurückhaltend und institutionell umgesetzt: weiche dezente Schatten,
    moderate Rundung, IBM Plex Sans durchgängig, IBM Plex Mono für
    Preise/Kürzel.
    ========================================================================== */
@@ -21,9 +23,9 @@
   --gold: #ffc629;
   --gold-ink: #7a5900;
   --gold-wash: #fff2c4;
-  --route: #123c7a;
-  --route-2: #17529e;
-  --route-bright: #3b82f6;
+  --route: #2a1210;
+  --route-2: #3d1b17;
+  --route-bright: #ff7a45;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --header-h: 78px;
 }
@@ -86,7 +88,7 @@
     color: #fff;
   }
   .block-route p {
-    color: #adc0e2;
+    color: #CDB0A8;
   }
   .section {
     padding-block: clamp(3.5rem, 8vw, 7.5rem);
@@ -112,6 +114,12 @@
   }
   .block-route .eyebrow {
     color: var(--gold);
+  }
+  .eyebrow-on-dark {
+    color: var(--gold);
+  }
+  .eyebrow-on-dark::before {
+    background: var(--gold);
   }
 
   /* Buttons — klar, institutionell: dezenter Schatten, kein Comic-Bounce */
@@ -276,6 +284,20 @@
     background-repeat: no-repeat;
     background-position: center;
     opacity: 0.18;
+  }
+
+  /* ---------- Hero-Foto (Startseite) ---------- */
+  .hero-photo {
+    filter: grayscale(30%) saturate(1.2) brightness(0.6) contrast(1.05);
+  }
+  .hero-scrim {
+    background: linear-gradient(
+      180deg,
+      rgba(20, 8, 7, 0.82) 0%,
+      rgba(20, 8, 7, 0.6) 40%,
+      rgba(20, 8, 7, 0.22) 75%,
+      var(--paper) 100%
+    );
   }
 }
 

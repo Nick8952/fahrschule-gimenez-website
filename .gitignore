@@ -17,3 +17,5 @@ _originals/
 .npm/
 *.log
 next-env.d.ts
+
+.vercel

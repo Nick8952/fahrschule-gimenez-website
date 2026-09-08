@@ -6,6 +6,7 @@ import { site, reasons } from "@/lib/data";
 import PageHero from "@/components/PageHero";
 import Prose from "@/components/Prose";
 import Reveal from "@/components/Reveal";
+import CtaBand from "@/components/CtaBand";
 import Icon from "@/components/Icon";
 import { ChecklistGrid, LangList } from "@/components/ui";
 
@@ -79,26 +80,11 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="section block-light">
-        <div className="wrap">
-          <Reveal className="card !bg-signal !border-none !p-10 text-center text-white sm:!p-14">
-            <h2 className="mx-auto max-w-[20ch] text-step-3 font-extrabold">
-              Lust auf die erste Fahrstunde?
-            </h2>
-            <p className="mx-auto mt-4 max-w-[46ch] text-white/85">
-              Melde dich – wir freuen uns darauf, dich auf dem Weg zum Führerschein zu begleiten.
-            </p>
-            <div className="mt-7 flex flex-wrap justify-center gap-3">
-              <a href={`tel:${site.phone.tel}`} className="btn bg-white !text-signal">
-                {site.phone.display}
-              </a>
-              <Link href="/kontakt" className="btn !border-white !bg-transparent !text-white">
-                Kontakt aufnehmen
-              </Link>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+      <CtaBand
+        title="Lust auf die erste Fahrstunde?"
+        body="Melde dich – wir freuen uns darauf, dich auf dem Weg zum Führerschein zu begleiten."
+        actionLabel="Kontakt aufnehmen"
+      />
     </>
   );
 }

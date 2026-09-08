@@ -14,18 +14,11 @@
 
 :root {
   --paper: #fff7e8;
-  --paper-2: #fcefd2;
   --ink: #201a12;
   --ink-soft: #6e6152;
   --signal: #d6001c;
   --signal-600: #a50016;
-  --signal-wash: #fce4e6;
   --gold: #ffc629;
-  --gold-ink: #7a5900;
-  --gold-wash: #fff2c4;
-  --route: #2a1210;
-  --route-2: #3d1b17;
-  --route-bright: #ff7a45;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --header-h: 78px;
 }
@@ -78,18 +71,6 @@
     background: var(--paper);
     color: var(--ink);
   }
-  .block-route {
-    background: var(--route);
-    color: #eef2fb;
-  }
-  .block-route h1,
-  .block-route h2,
-  .block-route h3 {
-    color: #fff;
-  }
-  .block-route p {
-    color: #CDB0A8;
-  }
   .section {
     padding-block: clamp(3.5rem, 8vw, 7.5rem);
   }
@@ -111,9 +92,6 @@
     height: 1.1em;
     background: var(--signal);
     flex: 0 0 auto;
-  }
-  .block-route .eyebrow {
-    color: var(--gold);
   }
   .eyebrow-on-dark {
     color: var(--gold);
@@ -166,15 +144,6 @@
   .btn-ghost:hover {
     border-color: var(--ink);
   }
-  .block-route .btn-ghost {
-    background: transparent;
-    color: #fff;
-    border-color: color-mix(in srgb, #fff 45%, transparent);
-  }
-  .block-route .btn-ghost:hover {
-    border-color: #fff;
-  }
-
   /* Prose (Rechtstexte) */
   .prose {
     font-size: 1.03rem;
@@ -265,14 +234,6 @@
     background-repeat: no-repeat;
     background-position: center;
     opacity: 0.18;
-  }
-  .block-route .route-line {
-    background-image: repeating-linear-gradient(
-      90deg,
-      var(--gold) 0 16px,
-      transparent 16px 32px
-    );
-    opacity: 0.5;
   }
   .route-line-v {
     background-image: repeating-linear-gradient(

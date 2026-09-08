@@ -9,6 +9,7 @@ import RouteStamp from "@/components/RouteStamp";
 import RouteStrip from "@/components/RouteStrip";
 import Reveal from "@/components/Reveal";
 import Icon from "@/components/Icon";
+import CtaBand from "@/components/CtaBand";
 import { SectionHead, ChecklistGrid, LangList } from "@/components/ui";
 
 type FM = {
@@ -93,27 +94,11 @@ export default function HomePage() {
       </section>
 
       {/* CTA */}
-      <section className="section block-light">
-        <div className="wrap">
-          <Reveal className="card !bg-signal !border-none !p-10 text-center text-white sm:!p-14">
-            <h2 className="mx-auto max-w-[20ch] text-step-3 font-extrabold">
-              Bereit für die erste Fahrstunde?
-            </h2>
-            <p className="mx-auto mt-4 max-w-[46ch] text-white/85">
-              Ruf einfach an oder schreib uns – wir beraten dich gerne und finden gemeinsam den
-              passenden Kurs.
-            </p>
-            <div className="mt-7 flex flex-wrap justify-center gap-3">
-              <a href={`tel:${site.phone.tel}`} className="btn bg-white !text-signal">
-                {site.phone.display}
-              </a>
-              <Link href="/kontakt" className="btn !border-white !bg-transparent !text-white">
-                Kontakt aufnehmen
-              </Link>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+      <CtaBand
+        title="Bereit für die erste Fahrstunde?"
+        body="Ruf einfach an oder schreib uns – wir beraten dich gerne und finden gemeinsam den passenden Kurs."
+        actionLabel="Kontakt aufnehmen"
+      />
     </>
   );
 }

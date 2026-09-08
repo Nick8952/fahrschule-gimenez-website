@@ -2,35 +2,14 @@ import Link from "next/link";
 import Image from "next/image";
 import { site, nav } from "@/lib/data";
 import { asset } from "@/lib/site";
-import Icon from "./Icon";
 
 export default function SiteFooter() {
   const year = new Date().getFullYear();
   return (
     <footer>
-      {/* CTA-Statement */}
-      <section className="block-route">
-        <div className="wrap section">
-          <p className="eyebrow mb-5">Bereit?</p>
-          <h2 className="max-w-[16ch] text-step-4 font-extrabold text-white">
-            Starte deinen Weg zum Führerschein
-          </h2>
-          <p className="mt-5 max-w-[46ch] text-[#CDB0A8]">
-            Ruf einfach an oder schreib uns eine Nachricht – wir beraten dich gerne und finden
-            gemeinsam den passenden Kurs.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link href="/kontakt" className="btn btn-signal">
-              Jetzt anfragen
-            </Link>
-            <a href={`tel:${site.phone.tel}`} className="btn btn-ghost">
-              <Icon name="phone" className="h-4 w-4" /> {site.phone.display}
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
+      {/* Jedes Seiten-Ende hat schon ein eigenes, inhaltlich passendes
+          CTA-Band (siehe page.tsx-Dateien) - die Fusszeile wiederholt das
+          nicht, sondern bleibt reine Info. */}
       <div className="bg-route-2 text-[#CDB0A8]">
         <div className="wrap py-14">
           <div className="grid gap-10 md:grid-cols-[1.3fr_1fr_1fr_1.2fr]">

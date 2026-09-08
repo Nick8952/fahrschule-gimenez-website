@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { getPage } from "@/lib/content";
 import { pageMeta } from "@/lib/seo";
-import { site, prices } from "@/lib/data";
+import { prices } from "@/lib/data";
 import PageHero from "@/components/PageHero";
 import PriceGrid from "@/components/PriceGrid";
 import { Callout } from "@/components/ui";
 import Reveal from "@/components/Reveal";
+import CtaBand from "@/components/CtaBand";
 import Icon from "@/components/Icon";
 
 type FM = {
@@ -38,37 +38,15 @@ export default function Page() {
           </Reveal>
 
           <PriceGrid items={prices.items} />
-
-          <Reveal className="mt-10 text-center">
-            <p className="text-ink-soft">Alles Wichtige geklärt? Sende uns direkt deine unverbindliche Anfrage.</p>
-            <Link href="/kontakt" className="btn btn-signal mt-4">
-              Jetzt anfragen
-            </Link>
-          </Reveal>
         </div>
       </section>
 
-      <section className="section block-light border-t border-ink/10">
-        <div className="wrap">
-          <Reveal className="card !bg-signal !border-none !p-10 text-center text-white sm:!p-14">
-            <h2 className="mx-auto max-w-[22ch] text-step-3 font-extrabold">
-              Nicht sicher, was du brauchst?
-            </h2>
-            <p className="mx-auto mt-4 max-w-[46ch] text-white/85">
-              Wir stellen dir gerne ein persönliches Paket zusammen – ruf einfach an oder schreib
-              uns.
-            </p>
-            <div className="mt-7 flex flex-wrap justify-center gap-3">
-              <a href={`tel:${site.phone.tel}`} className="btn bg-white !text-signal">
-                {site.phone.display}
-              </a>
-              <Link href="/kontakt" className="btn !border-white !bg-transparent !text-white">
-                Beratung anfragen
-              </Link>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+      <CtaBand
+        className="border-t border-ink/10"
+        title="Nicht sicher, was du brauchst?"
+        body="Wir stellen dir gerne ein persönliches Paket zusammen – ruf einfach an oder schreib uns."
+        actionLabel="Beratung anfragen"
+      />
     </>
   );
 }

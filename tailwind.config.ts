@@ -21,8 +21,8 @@ const config: Config = {
     extend: {
       colors: {
         signal: { DEFAULT: "#D6001C", 600: "#A50016", wash: "#FCE4E6" },
-        gold: { DEFAULT: "#FFC629", ink: "#7A5900", bright: "#FFE066", wash: "#FFF2C4" },
-        route: { DEFAULT: "#2A1210", 2: "#3D1B17", bright: "#FF7A45", wash: "#F4E9E6" },
+        gold: { DEFAULT: "#FFC629" },
+        route: { DEFAULT: "#2A1210", 2: "#3D1B17" },
         paper: { DEFAULT: "#FFF7E8", 2: "#FCEFD2" },
         ink: { DEFAULT: "#201A12", soft: "#6E6152" },
         muted: { DEFAULT: "#6E6152" },

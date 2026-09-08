@@ -35,7 +35,7 @@ export default function HomePage() {
             fill
             priority
             unoptimized
-            className="hero-photo object-cover object-[38%_42%]"
+            className="hero-photo object-cover object-[20%_44%]"
           />
           <div className="hero-scrim absolute inset-0" />
         </div>

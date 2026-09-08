@@ -6,8 +6,9 @@ import { asset } from "@/lib/site";
 
 /**
  * Das echte Gimenez-Logo, gross und leicht gekippt wie ein frisch aufgedrückter
- * Gummistempel — inklusive gestricheltem Stempelring mit Mikrotext.
- * Bewusst nur EINMAL verwendet (Startseiten-Hero), damit es besonders bleibt.
+ * Stempel — mit gestricheltem Stempelring (ohne Mikrotext, das war bei diesem
+ * Massstab unleserlich/verpixelt). Bewusst nur EINMAL verwendet
+ * (Startseiten-Hero), damit es besonders bleibt.
  */
 export default function RouteStamp({
   size = 320,
@@ -16,8 +17,6 @@ export default function RouteStamp({
   size?: number;
   tilt?: number;
 }) {
-  const ringId = "stamp-ring-path";
-
   return (
     <motion.div
       className="relative mx-auto"
@@ -27,21 +26,13 @@ export default function RouteStamp({
       viewport={{ once: true, amount: 0.6 }}
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
     >
-      {/* Gestrichelter Stempelring mit umlaufendem Mikrotext */}
+      {/* Gestrichelter Stempelring */}
       <svg
         viewBox="0 0 200 200"
-        className="absolute inset-[-9%] h-[118%] w-[118%] text-signal"
+        className="absolute inset-[-6%] h-[112%] w-[112%] text-signal"
         aria-hidden="true"
       >
-        <defs>
-          <path id={ringId} d="M 100,100 m -88,0 a 88,88 0 1,1 176,0 a 88,88 0 1,1 -176,0" />
-        </defs>
-        <circle cx="100" cy="100" r="88" fill="none" stroke="currentColor" strokeWidth="3" strokeDasharray="2 7" opacity="0.8" />
-        <text className="fill-signal font-mono" fontSize="8.4" letterSpacing="3">
-          <textPath href={`#${ringId}`} startOffset="0%">
-            FAHRSCHULE GIMENEZ &#8226; ZÜRICH &#8226; FAHRSCHULE GIMENEZ &#8226; ZÜRICH &#8226;
-          </textPath>
-        </text>
+        <circle cx="100" cy="100" r="94" fill="none" stroke="currentColor" strokeWidth="3" strokeDasharray="3 9" opacity="0.75" />
       </svg>
 
       {/* Logo */}

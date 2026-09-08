@@ -1,0 +1,26 @@
+# GitLab Pages – baut den Next.js-Static-Export und veröffentlicht ihn.
+# Temporär reaktiviert als Live-Vorschau, bis der Vercel-Import (GitHub-Ziel)
+# eingerichtet ist. Das Sveltia-CMS-Backend in public/admin/config.yml ist
+# auf GitHub konfiguriert und funktioniert auf dieser GitLab-Kopie nicht -
+# das ist hier nicht relevant, es geht nur um die sichtbaren Seiten.
+
+image: node:22-alpine
+
+pages:
+  stage: deploy
+  cache:
+    key:
+      files:
+        - package-lock.json
+    paths:
+      - .npm/
+  script:
+    - npm ci --cache .npm --prefer-offline
+    - npm run build
+    - rm -rf public
+    - mv out public
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

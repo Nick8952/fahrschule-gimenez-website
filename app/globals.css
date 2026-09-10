@@ -3,29 +3,35 @@
 @tailwind utilities;
 
 /* ============================================================================
-   Fahrschule Roberto Gimenez — "Verkehrsschild" (seriös)
-   Verbotsrot/Warnschild-Gold vom echten Logo, jetzt auf das Hero-Studiofoto
-   abgestimmt (Fahrschulwagen vor rot-goldenem Verlauf, dunkler Asphalt) —
-   die dunkle Akzentfläche ist warmes Asphalt-Schwarzbraun statt Blau.
-   Zurückhaltend und institutionell umgesetzt: weiche dezente Schatten,
-   moderate Rundung, IBM Plex Sans durchgängig, IBM Plex Mono für
-   Preise/Kürzel.
+   Fahrschule Roberto Gimenez — "Zürcher Signaletik"
+
+   Reines Weiss, strenges linksbündiges Raster, Haarlinien statt Rahmen,
+   Mono für Mikro-Labels und Zahlen. Farbe kommt aus dem echten Logo
+   (Signalrot + Warngold) und aus dem Hero-Foto — sonst nichts.
+
+   Signatur: .tafel — eine Informationstafel aus Milchglas, die über der
+   Bildebene liegt. Bewusst dosiert eingesetzt (Hero + Preis-Panels), nicht
+   als Deko auf jeder Fläche.
    ========================================================================== */
 
 :root {
-  --paper: #fff7e8;
-  --ink: #201a12;
-  --ink-soft: #6e6152;
+  --paper: #ffffff;
+  --paper-2: #f4f3f1;
+  --graphite: #1e1b19;
+  --ink: #141210;
+  --ink-soft: #57514c;
   --signal: #d6001c;
-  --signal-600: #a50016;
-  --gold: #ffc629;
+  --signal-600: #a80016;
+  --amber: #f5a623;
+  --line: rgba(20, 18, 16, 0.14);
+  --line-strong: rgba(20, 18, 16, 0.26);
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --header-h: 78px;
+  --header-h: 74px;
 }
 
 @layer base {
   * {
-    border-color: color-mix(in srgb, var(--ink) 14%, transparent);
+    border-color: var(--line);
   }
   html {
     -webkit-text-size-adjust: 100%;
@@ -37,29 +43,42 @@
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
+  /* Platz fuer die fixe Aktionsleiste am unteren Rand (nur Mobile), sonst
+     verdeckt sie die letzte Zeile der Fusszeile. */
+  @media (max-width: 639px) {
+    body {
+      padding-bottom: calc(56px + env(safe-area-inset-bottom, 0px));
+    }
+  }
   h1,
   h2,
   h3 {
     font-family: theme("fontFamily.display");
     font-weight: 700;
-    letter-spacing: -0.015em;
-    line-height: 1.12;
+    letter-spacing: -0.02em;
+    line-height: 1.08;
     text-wrap: balance;
   }
   ::selection {
     background: var(--signal);
     color: #fff;
   }
+  /* Firefox setzt auf Platzhalter zusaetzlich opacity .54 — das druecken wir
+     zurueck, sonst liegt der Hinweistext unter 3:1 Kontrast. */
+  ::placeholder {
+    color: var(--ink-soft);
+    opacity: 1;
+  }
   :focus-visible {
     outline: 3px solid var(--signal);
     outline-offset: 3px;
-    border-radius: 4px;
+    border-radius: 2px;
   }
 }
 
 @layer components {
   .wrap {
-    width: min(76rem, 92vw);
+    width: min(78rem, 92vw);
     margin-inline: auto;
   }
   .wrap-eng {
@@ -67,67 +86,100 @@
     margin-inline: auto;
   }
 
+  .section {
+    padding-block: clamp(3.25rem, 6vw, 5.5rem);
+  }
   .block-light {
     background: var(--paper);
     color: var(--ink);
   }
-  .section {
-    padding-block: clamp(3.5rem, 8vw, 7.5rem);
+  .block-mist {
+    background: var(--paper-2);
+    color: var(--ink);
+  }
+  .block-dark {
+    background: var(--graphite);
+    color: #fff;
   }
 
-  /* Eyebrow — schlichtes Balken-Label, wie ein Aktenreiter/Bericht-Vermerk */
+  /* ---------- Signaletik-Bausteine ---------- */
+
+  /* Mikro-Label: Mono, versalisiert, gesperrt — wie eine Tafelbeschriftung.
+     Rot auf Weiss = 5.5:1, rot auf #F4F3F1 = 5.2:1 (AA für Normaltext). */
   .eyebrow {
     display: inline-flex;
     align-items: center;
-    gap: 0.6rem;
+    gap: 0.7rem;
     color: var(--signal);
-    font-family: theme("fontFamily.body");
-    font-weight: 600;
-    font-size: 0.85rem;
-    letter-spacing: 0.01em;
+    font-family: theme("fontFamily.mono");
+    font-weight: 500;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
   }
   .eyebrow::before {
     content: "";
-    width: 3px;
-    height: 1.1em;
-    background: var(--signal);
+    width: 1.6rem;
+    height: 2px;
+    background: currentColor;
     flex: 0 0 auto;
   }
+  /* Auf dunklem Grund: Gold statt Rot (Rot auf Graphit wäre 3.6:1). */
   .eyebrow-on-dark {
-    color: var(--gold);
-  }
-  .eyebrow-on-dark::before {
-    background: var(--gold);
+    color: var(--amber);
   }
 
-  /* Buttons — klar, institutionell: dezenter Schatten, kein Comic-Bounce */
+  /* Haarlinie über einem Abschnittskopf — das Raster sichtbar gemacht. */
+  .rule {
+    height: 1px;
+    background: var(--line-strong);
+  }
+
+  /* ---------- Signatur: Milchglas-Informationstafel ---------- */
+
+  .tafel {
+    /* 0.78 ist die Untergrenze, bei der der gedaempfte Fliesstext (--ink-soft)
+       auch ueber der dunkelsten Stelle des Fotos noch ueber 4.5:1 bleibt.
+       Weiter runter sieht glasiger aus, wird aber unlesbar. */
+    background: rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(40px) saturate(150%);
+    -webkit-backdrop-filter: blur(40px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      theme("boxShadow.l");
+  }
+  /* Ohne backdrop-filter (ältere Browser) muss die Fläche deckend werden,
+     sonst steht der Text auf dem Foto und ist nicht mehr lesbar. */
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .tafel {
+      background: rgba(255, 255, 255, 0.96);
+    }
+  }
+
+  /* ---------- Buttons ---------- */
+
   .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.55rem;
     min-height: 50px;
-    padding: 0.85rem 1.6rem;
+    padding: 0.8rem 1.5rem;
     font-family: theme("fontFamily.display");
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 0.98rem;
+    letter-spacing: -0.005em;
     border: 1.5px solid transparent;
     border-radius: theme("borderRadius.DEFAULT");
-    box-shadow: theme("boxShadow.s");
     transition:
-      transform 0.2s var(--ease),
-      box-shadow 0.2s var(--ease),
-      background 0.2s,
-      color 0.2s,
-      border-color 0.2s;
-  }
-  .btn:hover {
-    transform: translateY(-1px);
-    box-shadow: theme("boxShadow.m");
+      background 0.2s var(--ease),
+      color 0.2s var(--ease),
+      border-color 0.2s var(--ease),
+      transform 0.15s var(--ease);
   }
   .btn:active {
-    transform: translateY(0);
-    box-shadow: theme("boxShadow.s");
+    transform: translateY(1px);
   }
   .btn-signal {
     background: var(--signal);
@@ -136,18 +188,46 @@
   .btn-signal:hover {
     background: var(--signal-600);
   }
-  .btn-ghost {
-    background: #fff;
+  /* Sekundär auf hellem Grund */
+  .btn-outline {
+    background: transparent;
     color: var(--ink);
-    border-color: color-mix(in srgb, var(--ink) 20%, transparent);
+    border-color: var(--line-strong);
   }
-  .btn-ghost:hover {
+  .btn-outline:hover {
     border-color: var(--ink);
+    background: rgba(20, 18, 16, 0.04);
   }
-  /* Prose (Rechtstexte) */
+  /* Sekundär auf dunklem Grund / auf dem Foto — eine eigene Klasse statt
+     !-Overrides, damit kein Weiss-auf-Weiss mehr entstehen kann. */
+  .btn-on-dark {
+    background: transparent;
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+  .btn-on-dark:hover {
+    border-color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  /* ---------- Flächen ---------- */
+
+  .card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: theme("borderRadius.lg");
+    padding: 1.6rem;
+    transition:
+      border-color 0.2s var(--ease),
+      box-shadow 0.2s var(--ease),
+      transform 0.2s var(--ease);
+  }
+
+  /* ---------- Prose (Rechtstexte) ---------- */
+
   .prose {
     font-size: 1.03rem;
-    line-height: 1.78;
+    line-height: 1.75;
     color: var(--ink-soft);
   }
   .prose > * + * {
@@ -155,33 +235,32 @@
   }
   .prose h2 {
     font-family: theme("fontFamily.display");
-    font-weight: 600;
-    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    font-weight: 700;
+    font-size: clamp(1.35rem, 3vw, 1.8rem);
     color: var(--ink);
     margin-top: 2.6rem;
   }
   .prose strong {
     color: var(--ink);
-    font-weight: 700;
+    font-weight: 600;
   }
   .prose ul {
     list-style: none;
     padding: 0;
     display: grid;
-    gap: 0.6rem;
+    gap: 0.55rem;
   }
   .prose ul li {
-    padding-left: 1.5rem;
+    padding-left: 1.4rem;
     position: relative;
   }
   .prose ul li::before {
     content: "";
     position: absolute;
-    left: 0.15rem;
-    top: 0.65em;
-    width: 0.5rem;
-    height: 0.5rem;
-    border-radius: 50%;
+    left: 0;
+    top: 0.72em;
+    width: 0.6rem;
+    height: 2px;
     background: var(--signal);
   }
   .prose a {
@@ -191,75 +270,47 @@
     text-underline-offset: 0.2em;
   }
 
-  /* Karten — klarer Rand, dezenter Schatten */
-  .card {
-    background: #fff;
-    border: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
-    border-radius: theme("borderRadius.lg");
-    padding: 1.7rem;
-    box-shadow: theme("boxShadow.s");
-    transition:
-      transform 0.2s var(--ease),
-      box-shadow 0.2s var(--ease),
-      border-color 0.2s;
-  }
-  .card-hover:hover {
-    transform: translateY(-3px);
-    box-shadow: theme("boxShadow.m");
-    border-color: color-mix(in srgb, var(--signal) 40%, transparent);
-  }
+  /* ---------- Scroll-Reveal ---------- */
 
-  /* Scroll-Reveal */
   .reveal {
     opacity: 0;
-    transform: translateY(1.5rem);
+    transform: translateY(1.25rem);
     transition:
-      opacity 0.6s var(--ease),
-      transform 0.6s var(--ease);
+      opacity 0.55s var(--ease),
+      transform 0.55s var(--ease);
   }
   .reveal.in {
     opacity: 1;
     transform: none;
   }
 
-  /* ---------- Routen-Motiv (Signatur) ---------- */
+  /* ---------- Bildebene ---------- */
 
-  .route-line {
-    background-image: repeating-linear-gradient(
-      90deg,
-      var(--ink) 0 16px,
-      transparent 16px 32px
-    );
-    background-size: 100% 4px;
-    background-repeat: no-repeat;
-    background-position: center;
-    opacity: 0.18;
-  }
-  .route-line-v {
-    background-image: repeating-linear-gradient(
-      180deg,
-      var(--ink) 0 14px,
-      transparent 14px 28px
-    );
-    background-size: 4px 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-    opacity: 0.18;
-  }
-
-  /* ---------- Hero-Foto (Startseite) ---------- */
+  /* Das Foto bleibt satt rot (es ist das einzige Bild der Seite) und wird nur
+     so weit abgedunkelt, dass die Milchglas-Tafel und die Kopfzeile darauf
+     sauber sitzen. */
   .hero-photo {
-    filter: grayscale(30%) saturate(1.2) brightness(0.6) contrast(1.05);
+    filter: saturate(1.02) brightness(0.82) contrast(1.04);
   }
+  /* Zwei Schleier: links dunkler (Tafel-Untergrund), unten Übergang ins Weiss
+     der nächsten Sektion — damit die Bildkante nicht hart abbricht. */
   .hero-scrim {
-    background: linear-gradient(
-      180deg,
-      rgba(20, 8, 7, 0.82) 0%,
-      rgba(20, 8, 7, 0.6) 40%,
-      rgba(20, 8, 7, 0.22) 75%,
-      var(--paper) 100%
-    );
+    background:
+      linear-gradient(
+        90deg,
+        rgba(20, 18, 16, 0.42) 0%,
+        rgba(20, 18, 16, 0.2) 45%,
+        rgba(20, 18, 16, 0.02) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(20, 18, 16, 0.3) 0%,
+        rgba(20, 18, 16, 0.04) 32%,
+        rgba(255, 255, 255, 0) 86%,
+        var(--paper) 100%
+      );
   }
+
 }
 
 @media (prefers-reduced-motion: reduce) {

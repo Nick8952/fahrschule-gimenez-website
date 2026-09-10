@@ -2,21 +2,28 @@ import Reveal from "./Reveal";
 
 type Step = { n: number; title: string; body: string };
 
-/** Vertikale Variante des Routen-Motivs für die 4 Schritte zum Führerschein. */
+/**
+ * Die Schritte zum Führerschein als Ablaufplan.
+ *
+ * Hier ist die Nummerierung inhaltlich gedeckt: die Schritte MÜSSEN in dieser
+ * Reihenfolge passieren (ohne Nothelferkurs kein Lernfahrausweis). Deshalb
+ * steht die Nummer gross in der linken Spalte — sie ist Information, keine
+ * Dekoration.
+ */
 export default function RouteSteps({ steps }: { steps: Step[] }) {
   return (
-    <ol className="relative grid gap-10 pl-[4.5rem] sm:pl-24">
-      <div
-        className="route-line-v absolute left-7 top-2 bottom-2 w-[3px] sm:left-9"
-        aria-hidden="true"
-      />
+    <ol className="grid">
       {steps.map((s, i) => (
-        <Reveal key={s.n} delay={i * 70} className="relative">
-          <span className="absolute -left-[4.5rem] top-0 grid h-14 w-14 place-items-center rounded-full border-2 border-signal bg-paper font-display text-xl font-bold text-signal shadow-s sm:-left-24">
-            {s.n}
-          </span>
-          <h3 className="text-step-1 font-extrabold">{s.title}</h3>
-          <p className="mt-1.5 max-w-[52ch] text-ink-soft">{s.body}</p>
+        <Reveal key={s.n} delay={i * 65}>
+          <li className="grid gap-x-6 gap-y-2 border-t border-ink/15 py-7 sm:grid-cols-[4.5rem_1fr] md:grid-cols-[7rem_1fr]">
+            <span className="font-mono text-[0.85rem] font-medium tracking-[0.12em] text-signal">
+              {String(s.n).padStart(2, "0")}
+            </span>
+            <div>
+              <h3 className="text-step-1 font-bold">{s.title}</h3>
+              <p className="mt-2 max-w-[56ch] text-ink-soft">{s.body}</p>
+            </div>
+          </li>
         </Reveal>
       ))}
     </ol>

@@ -5,8 +5,8 @@ import { steps, faq } from "@/lib/data";
 import PageHero from "@/components/PageHero";
 import RouteSteps from "@/components/RouteSteps";
 import Faq from "@/components/Faq";
-import Reveal from "@/components/Reveal";
 import CtaBand from "@/components/CtaBand";
+import { SectionHead } from "@/components/ui";
 
 type FM = {
   seoTitle: string;
@@ -27,19 +27,24 @@ export default function Page() {
 
       <section className="section block-light">
         <div className="wrap">
+          {/* Titel bewusst anders als im Seitenkopf — dort steht bereits
+              "In vier Schritten zum Führerschein". */}
+          <SectionHead
+            eyebrow="Reihenfolge"
+            title="Was wann dran ist"
+            intro="Die Reihenfolge ist vorgegeben: ohne Nothelferkurs kein Lernfahrausweis, ohne Theorieprüfung keine Fahrstunden."
+          />
           <RouteSteps steps={steps.items} />
         </div>
       </section>
 
-      <section className="section block-light border-t border-ink/10">
+      <section className="section block-mist">
         <div className="wrap">
-          <Reveal className="mb-8 text-center">
-            <p className="eyebrow justify-center">Häufige Fragen</p>
-            <h2 className="mt-3 text-step-2 font-extrabold">Gut zu wissen</h2>
-            <p className="mx-auto mt-2 max-w-[52ch] text-ink-soft">
-              Die wichtigsten Fragen rund um Ausbildung und Ablauf – kurz beantwortet.
-            </p>
-          </Reveal>
+          <SectionHead
+            eyebrow="Häufige Fragen"
+            title="Gut zu wissen"
+            intro="Die wichtigsten Fragen rund um Ausbildung und Ablauf – kurz beantwortet."
+          />
           <Faq items={faq.items} />
         </div>
       </section>

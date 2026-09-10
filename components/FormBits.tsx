@@ -3,8 +3,16 @@ import { absUrl } from "@/lib/site";
 import type { ReactNode } from "react";
 
 export const inputClass =
-  "w-full rounded border-1.5 border-ink/15 bg-white px-3.5 py-2.5 text-step-0 text-ink outline-none transition focus:border-signal focus:ring-2 focus:ring-signal/15";
+  "w-full rounded border border-ink/25 bg-white px-3.5 py-3 text-step-0 text-ink outline-none transition focus:border-signal focus:ring-2 focus:ring-signal/20";
 
+/**
+ * Feldbeschriftung in Mono-Versalien wie eine Formularnummerierung.
+ *
+ * Label und Hinweis stehen bewusst in vollem bzw. gedaempftem Ink statt in
+ * abgestuften Deckkraeften: die frueheren /80 und /60 lagen bei 4.6:1 und
+ * 2.9:1 Kontrast — der Hinweistext war auf hellen Bildschirmen praktisch
+ * unsichtbar.
+ */
 export function Field({
   label,
   children,
@@ -16,11 +24,11 @@ export function Field({
 }) {
   return (
     <label className="block">
-      <span className="mb-1.5 block font-mono text-[0.72rem] uppercase tracking-[0.08em] text-ink-soft/80">
+      <span className="mb-2 block font-mono text-[0.68rem] uppercase tracking-[0.14em] text-ink">
         {label}
       </span>
       {children}
-      {hint && <span className="mt-1 block text-[0.8rem] text-ink-soft/60">{hint}</span>}
+      {hint && <span className="mt-1.5 block text-[0.82rem] text-ink-soft">{hint}</span>}
     </label>
   );
 }

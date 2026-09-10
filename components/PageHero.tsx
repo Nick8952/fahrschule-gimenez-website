@@ -1,8 +1,14 @@
 import Link from "next/link";
-import Image from "next/image";
-import { asset } from "@/lib/site";
 import Reveal from "./Reveal";
 
+/**
+ * Unterseiten-Kopf: dunkles Signaletik-Feld, linksbündig, ohne Foto.
+ *
+ * Das Hero-Foto bleibt bewusst der Startseite vorbehalten — auf jeder
+ * Unterseite wiederholt wäre es Tapete statt Aussage, und weisser Text auf
+ * einem wechselnd hellen Foto war genau die Stelle, an der der Kontrast
+ * gekippt ist. Auf dem Graphitfeld ist er fix bei 8:1 und darüber.
+ */
 export default function PageHero({
   eyebrow,
   title,
@@ -15,30 +21,27 @@ export default function PageHero({
   crumb?: string;
 }) {
   return (
-    <section className="relative overflow-hidden">
-      <div className="absolute inset-0 -z-10">
-        <Image
-          src={asset("/img/hero-car.jpg")}
-          alt=""
-          fill
-          priority
-          unoptimized
-          className="hero-photo object-cover object-[60%_15%]"
-        />
-        <div className="hero-scrim absolute inset-0" />
-      </div>
-      <div className="wrap pb-14 pt-14 sm:pb-20 sm:pt-20">
+    <section className="block-dark">
+      <div className="wrap pb-14 pt-10 sm:pb-20 sm:pt-14">
         <Reveal>
-          <nav className="mb-5 flex flex-wrap gap-2 font-mono text-[0.72rem] uppercase tracking-[0.1em] text-white/60">
-            <Link href="/" className="hover:text-gold">
+          <nav
+            className="flex flex-wrap items-center gap-2 border-b border-white/15 pb-5 font-mono text-[0.7rem] uppercase tracking-[0.14em] text-white/65"
+            aria-label="Brotkrumen"
+          >
+            <Link href="/" className="-my-2 inline-block py-2 transition-colors hover:text-amber">
               Start
             </Link>
             <span aria-hidden>/</span>
             <span className="text-white">{crumb ?? title}</span>
           </nav>
-          {eyebrow && <p className="eyebrow eyebrow-on-dark mb-4">{eyebrow}</p>}
-          <h1 className="max-w-[18ch] text-step-4 font-extrabold text-white">{title}</h1>
-          {lead && <p className="mt-5 max-w-[56ch] text-step-1 text-white/80">{lead}</p>}
+
+          <div className="grid gap-x-10 gap-y-5 pt-10 md:grid-cols-[1fr_0.8fr] md:items-end">
+            <div>
+              {eyebrow && <p className="eyebrow eyebrow-on-dark mb-5">{eyebrow}</p>}
+              <h1 className="max-w-[15ch] text-step-4 font-bold text-white">{title}</h1>
+            </div>
+            {lead && <p className="max-w-[48ch] text-white/80 md:pb-1">{lead}</p>}
+          </div>
         </Reveal>
       </div>
     </section>

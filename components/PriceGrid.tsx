@@ -3,44 +3,59 @@ import Reveal from "./Reveal";
 import Icon, { type IconKey } from "./Icon";
 import { courseFor, type PriceRow } from "@/lib/data";
 
+/**
+ * Preise im gleichen Signaletik-Raster wie das Kursangebot: Haarlinien statt
+ * Karten-Schatten, Beträge in der Mono-Schrift mit gleichbreiten Ziffern —
+ * dadurch stehen die Preise über alle Zellen hinweg exakt untereinander und
+ * lassen sich zeilenweise vergleichen.
+ */
 export default function PriceGrid({ items }: { items: PriceRow[] }) {
   return (
-    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="grid gap-px border border-ink/15 bg-ink/15 sm:grid-cols-2 lg:grid-cols-4">
       {items.map((row, i) => {
         const course = courseFor(row.courseKey);
         return (
           <Reveal
             key={row.name}
-            delay={(i % 3) * 60}
-            className="card card-hover flex flex-col"
+            delay={(i % 4) * 55}
+            className="flex flex-col bg-paper p-5 sm:p-6"
           >
-            <div className="flex items-center gap-3">
-              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-signal-wash text-signal">
-                <Icon name={(course?.icon as IconKey) ?? "car"} className="h-5 w-5" />
-              </span>
-              <h3 className="font-display text-step-1 font-bold">{row.name}</h3>
+            <div className="flex items-start justify-between gap-3">
+              <h3 className="font-display text-[1.05rem] font-bold leading-tight">{row.name}</h3>
+              <Icon
+                name={(course?.icon as IconKey) ?? "car"}
+                className="h-5 w-5 shrink-0 text-signal"
+              />
             </div>
-            <p className="mt-3 flex-1 text-[0.93rem] leading-relaxed text-ink-soft">
+
+            <p className="mt-3 flex-1 text-[0.9rem] leading-relaxed text-ink-soft">
               {row.description}
             </p>
-            {row.inquiryOnly ? (
-              <>
-                <p className="mt-4 font-display text-step-1 font-extrabold text-signal">
-                  Auf Anfrage
-                </p>
-                <Link href="/kontakt" className="btn btn-ghost mt-4">
-                  Angebot anfragen
+
+            <div className="mt-6 border-t border-ink/15 pt-4">
+              {row.inquiryOnly ? (
+                <Link
+                  href="/kontakt"
+                  className="inline-flex min-h-[44px] items-center gap-2 font-mono text-[0.95rem] font-medium text-signal underline decoration-1 underline-offset-4"
+                >
+                  Auf Anfrage <Icon name="arrow" className="h-4 w-4" />
                 </Link>
-              </>
-            ) : (
-              <p className="mt-4 font-mono text-[0.92rem] text-ink-soft">
-                {row.note && <span>{row.note} </span>}
-                <span className="text-step-2 font-display font-extrabold text-ink">
-                  CHF {row.price}
-                </span>
-                {row.unit && <span className="ml-1">{row.unit}</span>}
-              </p>
-            )}
+              ) : (
+                <p className="flex flex-wrap items-baseline gap-x-1.5">
+                  {row.note && (
+                    <span className="font-mono text-[0.68rem] uppercase tracking-[0.14em] text-ink-soft">
+                      {row.note}
+                    </span>
+                  )}
+                  <span className="font-mono text-[1.65rem] font-medium tabular-nums tracking-[-0.02em]">
+                    {row.price}
+                  </span>
+                  <span className="font-mono text-[0.8rem] text-ink-soft">
+                    CHF{row.unit ? ` ${row.unit}` : ""}
+                  </span>
+                </p>
+              )}
+            </div>
           </Reveal>
         );
       })}

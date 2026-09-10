@@ -8,7 +8,7 @@ import Prose from "@/components/Prose";
 import Reveal from "@/components/Reveal";
 import CtaBand from "@/components/CtaBand";
 import Icon from "@/components/Icon";
-import { ChecklistGrid, LangList } from "@/components/ui";
+import { ChecklistGrid, LangList, SectionHead } from "@/components/ui";
 
 type FM = {
   seoTitle: string;
@@ -28,11 +28,13 @@ export default function Page() {
       <PageHero eyebrow={fm.hero.eyebrow} title={fm.hero.title} lead={fm.hero.lead} crumb="Über uns" />
 
       <section className="section block-light">
-        <div className="wrap-eng">
-          <Reveal>
+        {/* Lesespalte an der linken Rasterkante, nicht zentriert — sonst
+            springt der Text gegenueber allen anderen Abschnitten ein. */}
+        <div className="wrap">
+          <Reveal className="max-w-eng">
             <Prose html={html} />
           </Reveal>
-          <Reveal delay={100} className="mt-8">
+          <Reveal delay={100} className="mt-10">
             <Link href="/kontakt" className="btn btn-signal">
               Lerne uns kennen
             </Link>
@@ -40,43 +42,47 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="section block-light border-t border-ink/10">
+      <section className="section block-mist">
         <div className="wrap">
-          <Reveal className="mb-8 text-center">
-            <p className="eyebrow justify-center">Warum Fahrschule Gimenez</p>
-            <h2 className="mt-3 text-step-2 font-extrabold">Das spricht für uns</h2>
-          </Reveal>
-          <div className="mx-auto max-w-[52rem]">
-            <ChecklistGrid items={reasons.items} />
-          </div>
+          <SectionHead eyebrow="Warum Fahrschule Gimenez" title="Das spricht für uns" />
+          <ChecklistGrid items={reasons.items} />
         </div>
       </section>
 
-      <section className="section block-light border-t border-ink/10">
-        <div className="wrap grid gap-10 sm:grid-cols-2">
-          <Reveal>
-            <h3 className="font-display text-step-1 font-bold">Unsere Schulwagen</h3>
-            <p className="mt-2 text-ink-soft">
-              Du übst auf zuverlässigen, gut gewarteten Fahrzeugen – {site.vehicles.gearNote}.
-            </p>
-            <div className="mt-4 flex flex-wrap gap-3">
-              {site.vehicles.models.map((m) => (
-                <span
-                  key={m}
-                  className="flex items-center gap-2 rounded-lg border border-ink/15 bg-white px-4 py-2.5 font-display font-bold shadow-s"
-                >
-                  <Icon name="car" className="h-5 w-5 text-signal" /> {m}
-                </span>
-              ))}
-            </div>
-          </Reveal>
-          <Reveal delay={100}>
-            <h3 className="font-display text-step-1 font-bold">Sprachen im Unterricht</h3>
-            <p className="mt-2 text-ink-soft">Wähl die Sprache, in der du dich am wohlsten fühlst.</p>
-            <div className="mt-4">
-              <LangList languages={site.languages} />
-            </div>
-          </Reveal>
+      <section className="section block-light">
+        <div className="wrap">
+          <SectionHead eyebrow="Ausstattung" title="Wagen und Sprachen" />
+          <div className="grid gap-10 sm:grid-cols-2">
+            <Reveal>
+              <h3 className="font-mono text-[0.68rem] uppercase tracking-[0.16em] text-ink-soft">
+                Schulwagen
+              </h3>
+              <p className="mt-3 max-w-[40ch] text-ink-soft">
+                Du übst auf zuverlässigen, gut gewarteten Fahrzeugen – {site.vehicles.gearNote}.
+              </p>
+              <div className="mt-5 flex flex-wrap gap-2">
+                {site.vehicles.models.map((m) => (
+                  <span
+                    key={m}
+                    className="flex items-center gap-2 rounded-sm border border-ink/20 px-4 py-2.5 font-display text-[0.95rem] font-semibold"
+                  >
+                    <Icon name="car" className="h-5 w-5 text-signal" /> {m}
+                  </span>
+                ))}
+              </div>
+            </Reveal>
+            <Reveal delay={100}>
+              <h3 className="font-mono text-[0.68rem] uppercase tracking-[0.16em] text-ink-soft">
+                Unterrichtssprachen
+              </h3>
+              <p className="mt-3 max-w-[40ch] text-ink-soft">
+                Wähl die Sprache, in der du dich am wohlsten fühlst.
+              </p>
+              <div className="mt-5">
+                <LangList languages={site.languages} />
+              </div>
+            </Reveal>
+          </div>
         </div>
       </section>
 

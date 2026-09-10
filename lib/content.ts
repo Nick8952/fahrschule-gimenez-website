@@ -7,7 +7,12 @@ import { marked } from "marked";
 
 const ROOT = process.cwd();
 
-marked.setOptions({ gfm: true, breaks: false });
+/* breaks: true — im CMS getippte Zeilenumbrueche sollen auch welche bleiben.
+   Ohne das klebte z. B. die Adresse im Impressum zu einer Zeile zusammen, und
+   wer die Texte spaeter im CMS pflegt, kann sich das nicht erklaeren. Kein
+   Absatz in content/ ist ueber mehrere Zeilen umbrochen, es entstehen also
+   keine ungewollten <br>. */
+marked.setOptions({ gfm: true, breaks: true });
 
 type Parsed<T> = { frontmatter: T; html: string; raw: string };
 

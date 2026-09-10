@@ -11,6 +11,6 @@
   "languages": ["Deutsch", "English", "Français", "Italiano", "Português", "Español"],
   "vehicles": { "models": ["FIAT", "SEAT"], "gearNote": "Handschaltung – Automat auf Wunsch möglich" },
   "mapQuery": "Seebahnstrasse 127 8003 Zürich",
-  "themeColor": "#17204D",
+  "themeColor": "#FFFFFF",
   "web3formsKey": "REPLACE-WITH-WEB3FORMS-ACCESS-KEY"
 }

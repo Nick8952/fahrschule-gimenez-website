@@ -3,10 +3,10 @@ import { getPage } from "@/lib/content";
 import { pageMeta } from "@/lib/seo";
 import { site, courses } from "@/lib/data";
 import PageHero from "@/components/PageHero";
-import RouteStrip from "@/components/RouteStrip";
 import Reveal from "@/components/Reveal";
 import CtaBand from "@/components/CtaBand";
 import Icon, { type IconKey } from "@/components/Icon";
+import { SectionHead } from "@/components/ui";
 
 type FM = {
   seoTitle: string;
@@ -25,44 +25,57 @@ export default function Page() {
     <>
       <PageHero eyebrow={fm.hero.eyebrow} title={fm.hero.title} lead={fm.hero.lead} crumb="Angebote" />
 
-      <section className="block-light pt-12 sm:pt-16">
-        <div className="wrap">
-          <RouteStrip stops={courses.items} />
-        </div>
-      </section>
-
+      {/* Kurskatalog: eine Zeile pro Kurs, Bezeichnung links, Beschreibung
+          rechts. Die Kachel-Übersicht steht auf der Startseite — hier ist der
+          Volltext das Eigentliche, eine zweite Kachelreihe darüber wäre
+          dieselbe Liste zweimal. */}
       <section className="section block-light">
-        <div className="wrap grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {courses.items.map((c, i) => (
-            <Reveal
-              key={c.key}
-              delay={(i % 3) * 60}
-              id={c.key}
-              className="card card-hover"
-            >
-              <span className="grid h-12 w-12 place-items-center rounded-full bg-signal-wash text-signal">
-                <Icon name={c.icon as IconKey} className="h-6 w-6" />
-              </span>
-              <h3 className="mt-4 font-display text-step-1 font-bold">{c.title}</h3>
-              <p className="mt-1.5 text-[0.93rem] leading-relaxed text-ink-soft">{c.description}</p>
-              <span className="mt-3 inline-block rounded-pill bg-paper-2 px-3 py-1 font-mono text-[0.72rem] font-medium uppercase tracking-[0.04em] text-ink-soft">
-                {c.tag}
-              </span>
-            </Reveal>
-          ))}
+        <div className="wrap">
+          <SectionHead
+            eyebrow="Kurskatalog"
+            title="Unsere Kurse im Detail"
+            intro="Alle Kurse finden bei uns statt – du musst für keinen Schritt die Schule wechseln."
+          />
+          <div className="grid">
+            {courses.items.map((c, i) => (
+              <Reveal
+                key={c.key}
+                delay={(i % 3) * 55}
+                id={c.key}
+                className="grid scroll-mt-32 gap-x-10 gap-y-3 border-t border-ink/15 py-8 md:grid-cols-[1fr_1.35fr]"
+              >
+                <div className="flex items-start gap-4">
+                  <Icon
+                    name={c.icon as IconKey}
+                    className="mt-1 h-6 w-6 shrink-0 text-signal"
+                  />
+                  <div>
+                    <h3 className="font-display text-step-1 font-bold">{c.title}</h3>
+                    <p className="mt-2 font-mono text-[0.68rem] uppercase tracking-[0.14em] text-ink-soft">
+                      {c.tag}
+                    </p>
+                  </div>
+                </div>
+                <p className="max-w-[58ch] text-ink-soft">{c.description}</p>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="section block-light border-t border-ink/10">
+      <section className="section block-mist">
         <div className="wrap">
-          <Reveal className="mb-8">
-            <p className="eyebrow">Unsere Fahrzeuge</p>
-            <h2 className="mt-3 text-step-2 font-extrabold">Üben auf zuverlässigen Schulwagen</h2>
-            <p className="mt-2 text-ink-soft">{site.vehicles.gearNote}.</p>
-          </Reveal>
-          <Reveal className="flex flex-wrap gap-3">
+          <SectionHead
+            eyebrow="Unsere Fahrzeuge"
+            title="Zuverlässige Schulwagen"
+            intro={`${site.vehicles.gearNote}.`}
+          />
+          <Reveal className="flex flex-wrap gap-2">
             {site.vehicles.models.map((m) => (
-              <span key={m} className="flex items-center gap-2 rounded-lg border border-ink/15 bg-white px-4 py-2.5 font-display font-bold shadow-s">
+              <span
+                key={m}
+                className="flex items-center gap-2 rounded-sm border border-ink/20 bg-white px-4 py-2.5 font-display text-[0.95rem] font-semibold"
+              >
                 <Icon name="car" className="h-5 w-5 text-signal" /> {m}
               </span>
             ))}

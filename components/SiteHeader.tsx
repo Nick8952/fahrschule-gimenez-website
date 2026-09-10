@@ -24,35 +24,43 @@ export default function SiteHeader() {
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-ink/10 bg-paper/92 backdrop-blur">
+      {/* Die Kopfzeile ist die kleinste Ausbaustufe der Milchglas-Tafel: sie
+          liegt als Glasleiste ueber dem Hero-Foto und wird auf weissen Seiten
+          einfach zu einer weissen Leiste mit Haarlinie. */}
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-ink/12 bg-white/80 backdrop-blur-xl backdrop-saturate-150">
         <div className="wrap flex h-[var(--header-h)] items-center justify-between gap-4">
-          <Link href="/" className="flex items-center gap-2.5" aria-label={`${site.name} – Start`}>
-            <span className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full bg-white shadow-s">
+          <Link href="/" className="flex items-center gap-3" aria-label={`${site.name} – Start`}>
+            <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full bg-white">
               <Image
                 src={asset("/img/logo.png")}
                 alt=""
-                width={88}
-                height={88}
+                width={80}
+                height={80}
                 priority
                 unoptimized
-                className="h-full w-full object-contain p-1"
+                className="h-full w-full object-contain"
               />
             </span>
             <span className="hidden flex-col leading-tight sm:flex">
-              <strong className="font-display text-[1.02rem] font-extrabold">{site.owner}</strong>
-              <small className="font-mono text-[0.68rem] uppercase tracking-[0.08em] text-ink-soft">
+              <strong className="font-display text-[1rem] font-bold tracking-[-0.01em]">
+                {site.owner}
+              </strong>
+              <small className="font-mono text-[0.62rem] uppercase tracking-[0.16em] text-ink-soft">
                 Fahrschule · Autoescola
               </small>
             </span>
           </Link>
 
-          <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Hauptnavigation">
+          <nav className="hidden items-center lg:flex" aria-label="Hauptnavigation">
             {nav.primary.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`relative px-3.5 py-2 font-display text-[0.95rem] font-semibold transition-colors ${
-                  isActive(item.href) ? "text-signal" : "text-ink hover:text-signal"
+                aria-current={isActive(item.href) ? "page" : undefined}
+                className={`relative px-3.5 py-2 font-display text-[0.92rem] font-semibold transition-colors after:absolute after:inset-x-3.5 after:bottom-0 after:h-[2px] after:transition-colors ${
+                  isActive(item.href)
+                    ? "text-signal after:bg-signal"
+                    : "text-ink after:bg-transparent hover:text-signal"
                 }`}
               >
                 {item.label}
@@ -63,7 +71,7 @@ export default function SiteHeader() {
           <div className="flex items-center gap-2">
             <a
               href={`tel:${site.phone.tel}`}
-              className="hidden btn btn-signal !min-h-[42px] !px-4 !text-[0.88rem] sm:inline-flex"
+              className="hidden btn btn-signal !min-h-[42px] !px-4 !text-[0.85rem] sm:inline-flex"
             >
               <Icon name="phone" className="h-4 w-4" /> Anrufen
             </a>
@@ -72,7 +80,7 @@ export default function SiteHeader() {
               onClick={() => setOpen((v) => !v)}
               aria-label={open ? "Menü schliessen" : "Menü öffnen"}
               aria-expanded={open}
-              className="grid h-11 w-11 place-items-center rounded border border-ink/15 lg:hidden"
+              className="grid h-11 w-11 place-items-center rounded border border-ink/20 lg:hidden"
             >
               <span className="relative block h-[2px] w-5 bg-current before:absolute before:-top-1.5 before:left-0 before:h-[2px] before:w-5 before:bg-current after:absolute after:top-1.5 after:left-0 after:h-[2px] after:w-5 after:bg-current" />
             </button>
@@ -82,7 +90,7 @@ export default function SiteHeader() {
 
       {/* Mobiles Voll-Sheet */}
       <div
-        className={`fixed inset-0 z-40 bg-paper transition-transform duration-300 lg:hidden ${
+        className={`fixed inset-0 z-40 bg-white transition-transform duration-300 lg:hidden ${
           open ? "translate-y-0" : "-translate-y-full"
         }`}
         style={{ paddingTop: "calc(var(--header-h) + 1rem)" }}
@@ -93,18 +101,20 @@ export default function SiteHeader() {
             <Link
               key={item.href}
               href={item.href}
-              className="flex items-center justify-between border-b border-ink/10 py-4 font-display text-3xl font-extrabold text-ink"
+              className="flex items-center justify-between border-b border-ink/15 py-4 font-display text-[1.9rem] font-bold tracking-[-0.02em] text-ink"
             >
               {item.label}
               <span className="text-signal">→</span>
             </Link>
           ))}
-          <div className="mt-6 grid gap-2 font-mono text-[0.9rem] text-ink-soft">
-            <a href={`tel:${site.phone.tel}`} className="text-signal">
+          <div className="mt-8 grid gap-1 font-mono text-[0.85rem] text-ink-soft">
+            <a href={`tel:${site.phone.tel}`} className="inline-block py-2 text-signal">
               {site.phone.display}
             </a>
-            <a href={`mailto:${site.email}`}>{site.email}</a>
-            <span>
+            <a href={`mailto:${site.email}`} className="inline-block py-2">
+              {site.email}
+            </a>
+            <span className="pt-1">
               {site.address.street}, {site.address.zip} {site.address.city}
             </span>
           </div>
@@ -113,7 +123,7 @@ export default function SiteHeader() {
 
       {/* Fixe Aktionsleiste (Mobile) */}
       <div
-        className="fixed inset-x-0 bottom-0 z-30 flex gap-px border-t border-ink/10 bg-paper sm:hidden"
+        className="fixed inset-x-0 bottom-0 z-30 flex border-t border-ink/15 bg-white/90 backdrop-blur-xl sm:hidden"
         style={{ paddingBottom: "env(safe-area-inset-bottom, 0px)" }}
       >
         <a

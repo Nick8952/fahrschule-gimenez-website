@@ -4,7 +4,7 @@ import { pageMeta } from "@/lib/seo";
 import { prices } from "@/lib/data";
 import PageHero from "@/components/PageHero";
 import PriceGrid from "@/components/PriceGrid";
-import { Callout } from "@/components/ui";
+import { Callout, SectionHead } from "@/components/ui";
 import Reveal from "@/components/Reveal";
 import CtaBand from "@/components/CtaBand";
 import Icon from "@/components/Icon";
@@ -28,6 +28,12 @@ export default function Page() {
 
       <section className="section block-light">
         <div className="wrap">
+          <SectionHead
+            eyebrow="Tarife"
+            title="Was es kostet"
+            intro="Alle Beträge in Schweizer Franken, inklusive MwSt. Eine Anfrage ist unverbindlich."
+          />
+
           <Reveal className="mb-8">
             <Callout>
               <p className="flex items-start gap-3 text-[0.95rem] text-ink">
@@ -42,7 +48,6 @@ export default function Page() {
       </section>
 
       <CtaBand
-        className="border-t border-ink/10"
         title="Nicht sicher, was du brauchst?"
         body="Wir stellen dir gerne ein persönliches Paket zusammen – ruf einfach an oder schreib uns."
         actionLabel="Beratung anfragen"

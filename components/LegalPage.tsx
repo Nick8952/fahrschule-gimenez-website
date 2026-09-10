@@ -26,8 +26,10 @@ export default function LegalPage({ slug }: { slug: string }) {
     <>
       <PageHero title={frontmatter.title} lead={frontmatter.subtitle} crumb={frontmatter.title} />
       <section className="section block-light">
-        <div className="wrap-eng">
-          <Reveal>
+        {/* Lesespalte linksbuendig im Raster (siehe globals.css, .wrap-eng
+            wird bewusst nicht mehr verwendet). */}
+        <div className="wrap">
+          <Reveal className="max-w-eng">
             <Prose html={html} />
           </Reveal>
         </div>

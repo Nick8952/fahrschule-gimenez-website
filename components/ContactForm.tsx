@@ -7,6 +7,8 @@ export default function ContactForm() {
     <form action="https://api.web3forms.com/submit" method="POST" className="card !p-6 sm:!p-8">
       <Web3FormsHidden subject="Neue Anfrage über die Website (Fahrschule Gimenez)" />
 
+      <h2 className="mb-6 font-display text-step-1 font-bold">Schreib uns</h2>
+
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Name">
           <input name="Name" required className={inputClass} autoComplete="name" />

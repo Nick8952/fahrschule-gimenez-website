@@ -30,8 +30,9 @@ export default function Page() {
           <Reveal>
             <ContactForm />
           </Reveal>
-          <Reveal delay={100} className="grid gap-4">
-            <InfoCard title="So erreichst du uns">
+          <div className="grid gap-4">
+            <Reveal delay={100}>
+              <InfoCard title="So erreichst du uns">
               <div className="grid gap-2.5">
                 <span className="flex items-start gap-2.5">
                   <Icon name="pin" className="mt-0.5 h-4 w-4 shrink-0 text-signal" />
@@ -43,13 +44,13 @@ export default function Page() {
                 </span>
                 <span className="flex items-center gap-2.5">
                   <Icon name="phone" className="h-4 w-4 shrink-0 text-signal" />
-                  <a href={`tel:${site.phone.tel}`} className="text-signal">
+                  <a href={`tel:${site.phone.tel}`} className="inline-block py-1.5 text-signal">
                     {site.phone.display}
                   </a>
                 </span>
                 <span className="flex items-center gap-2.5">
                   <Icon name="mail" className="h-4 w-4 shrink-0 text-signal" />
-                  <a href={`mailto:${site.email}`} className="text-signal">
+                  <a href={`mailto:${site.email}`} className="inline-block py-1.5 text-signal">
                     {site.email}
                   </a>
                 </span>
@@ -58,9 +59,13 @@ export default function Page() {
                   <span>{site.languages.join(" · ")}</span>
                 </span>
               </div>
-            </InfoCard>
+              </InfoCard>
+            </Reveal>
+            {/* Bewusst NICHT in <Reveal>: der Karten-Iframe darf nie in einem
+                Element mit opacity:0 stehen — sonst misst sich die Karte
+                darin falsch ein und fuellt den Rahmen nie mehr. */}
             <MapEmbed />
-          </Reveal>
+          </div>
         </div>
       </section>
     </>

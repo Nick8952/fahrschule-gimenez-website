@@ -5,7 +5,6 @@ import { getPage } from "@/lib/content";
 import { pageMeta } from "@/lib/seo";
 import { site, courses, reasons } from "@/lib/data";
 import { asset } from "@/lib/site";
-import RouteStamp from "@/components/RouteStamp";
 import RouteStrip from "@/components/RouteStrip";
 import Reveal from "@/components/Reveal";
 import Icon from "@/components/Icon";
@@ -24,11 +23,21 @@ export const metadata: Metadata = pageMeta("/", {
   description: fm.seoDescription,
 });
 
+/* Die Eckdaten, die jemand vor dem Anruf wissen will — direkt aus site.json,
+   damit sie im CMS mitgepflegt werden und nicht doppelt gepflegt sind. */
+const facts = [
+  { k: "Unterrichtssprachen", v: `${site.languages.length} Sprachen` },
+  { k: "Schulwagen", v: site.vehicles.models.join(" · ") },
+  { k: "Standort", v: `${site.address.street}, ${site.address.city}` },
+];
+
 export default function HomePage() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative overflow-hidden">
+      {/* Hero — Bildebene (Foto) mit einer Informationstafel aus Milchglas
+          darüber. Der Text steht auf der Tafel, nicht auf dem Foto: dadurch
+          ist der Kontrast unabhängig davon, was gerade hinter ihm liegt. */}
+      <section className="relative -mt-[var(--header-h)] overflow-hidden pt-[var(--header-h)]">
         <div className="absolute inset-0 -z-10">
           <Image
             src={asset("/img/hero-car.jpg")}
@@ -36,43 +45,57 @@ export default function HomePage() {
             fill
             priority
             unoptimized
-            className="hero-photo object-cover object-[20%_44%]"
+            className="hero-photo object-cover object-[68%_45%]"
           />
           <div className="hero-scrim absolute inset-0" />
         </div>
-        <div className="wrap grid items-center gap-12 pb-20 pt-14 sm:pb-32 sm:pt-20 lg:grid-cols-[1.2fr_.8fr]">
+
+        <div className="wrap pb-16 pt-10 sm:pb-24 sm:pt-16">
           <Reveal>
-            <p className="eyebrow eyebrow-on-dark mb-5">{fm.hero.eyebrow}</p>
-            <h1 className="max-w-[18ch] text-step-5 font-extrabold text-white">{fm.hero.title}</h1>
-            <p className="mt-6 max-w-[52ch] text-step-1 text-white/80">{fm.hero.lead}</p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a href={`tel:${site.phone.tel}`} className="btn btn-signal">
-                <Icon name="phone" className="h-4 w-4" /> {site.phone.display}
-              </a>
-              <Link href="/angebote" className="btn btn-ghost">
-                Angebote entdecken
-              </Link>
+            <div className="tafel max-w-[44rem] rounded-lg p-6 sm:p-10">
+              <p className="eyebrow mb-6">{fm.hero.eyebrow}</p>
+              <h1 className="max-w-[15ch] text-step-4 font-bold">{fm.hero.title}</h1>
+              <p className="mt-5 max-w-[48ch] text-step-1 text-ink-soft">{fm.hero.lead}</p>
+
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a href={`tel:${site.phone.tel}`} className="btn btn-signal">
+                  <Icon name="phone" className="h-4 w-4" /> {site.phone.display}
+                </a>
+                <Link href="/angebote" className="btn btn-outline">
+                  Angebote entdecken
+                </Link>
+              </div>
+
+              {/* Datenzeile im Tafel-Fuss — die Signatur des Rasters */}
+              <dl className="mt-9 grid gap-x-8 gap-y-5 border-t border-ink/15 pt-6 sm:grid-cols-3">
+                {facts.map((f) => (
+                  <div key={f.k}>
+                    <dt className="font-mono text-[0.66rem] uppercase tracking-[0.14em] text-ink-soft">
+                      {f.k}
+                    </dt>
+                    <dd className="mt-1.5 font-display text-[0.95rem] font-semibold">{f.v}</dd>
+                  </div>
+                ))}
+              </dl>
             </div>
-          </Reveal>
-          <Reveal delay={120}>
-            <RouteStamp />
           </Reveal>
         </div>
       </section>
 
-      {/* Route-Strip: Angebote als Stationen */}
-      <section className="block-light border-t border-ink/10 pb-4">
-        <div className="wrap pt-12 sm:pt-16">
-          <Reveal className="mb-8 text-center">
-            <p className="eyebrow justify-center">Dein Weg zum Führerschein</p>
-            <h2 className="mt-3 text-step-2 font-extrabold">Alle Stationen auf einen Blick</h2>
-          </Reveal>
-          <RouteStrip stops={courses.items} linkTo={() => "/angebote"} />
+      {/* Kursangebot als Raster */}
+      <section className="section block-light">
+        <div className="wrap">
+          <SectionHead
+            eyebrow="Kursangebot"
+            title="Alles aus einer Hand"
+            intro="Vom Nothelferkurs bis zur Weiterausbildung – du musst für keinen Schritt die Schule wechseln."
+          />
+          <RouteStrip stops={courses.items} linkTo={() => "/angebote"} allHref="/angebote" />
         </div>
       </section>
 
       {/* Das spricht für uns */}
-      <section className="section block-light">
+      <section className="section block-mist">
         <div className="wrap">
           <SectionHead eyebrow="Warum Gimenez" title="Das spricht für uns" />
           <ChecklistGrid items={reasons.items} />
@@ -80,7 +103,7 @@ export default function HomePage() {
       </section>
 
       {/* Sprachen */}
-      <section className="section block-light border-t border-ink/10">
+      <section className="section block-light">
         <div className="wrap">
           <SectionHead
             eyebrow="Sprachen"
@@ -93,7 +116,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CTA */}
       <CtaBand
         title="Bereit für die erste Fahrstunde?"
         body="Ruf einfach an oder schreib uns – wir beraten dich gerne und finden gemeinsam den passenden Kurs."

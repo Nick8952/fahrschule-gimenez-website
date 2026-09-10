@@ -22,9 +22,33 @@ laden sie schnell und es gibt nichts, was gehackt oder überlastet werden kann.
 
 ---
 
+## Auf wessen Konten? (bitte zuerst lesen)
+
+Die Konten wandern **erst nach der Zusage** zu Roberto. Vorher läuft alles auf
+den Konten des Erstellers — ein Konto auf fremden Namen anzulegen bringt nur
+Ärger, weil sich ein Passwort nicht zurücksetzen lässt, das man nie gesetzt hat.
+
+| | Vor der Zusage (Demo) | Nach der Zusage |
+|---|---|---|
+| GitHub | Ersteller | auf Robertos Konto übertragen |
+| Vercel | Ersteller | auf Robertos Konto übertragen |
+| Sanity | Ersteller | Roberto als Administrator einladen, dann Projekt übertragen |
+| Web3Forms | **eigene** E-Mail, damit das Formular vorführbar ist | Roberto holt den Schlüssel auf `info@gimenez.ch` |
+
+Bei Sanity gilt: **Anmeldung ist nicht dasselbe wie Inhaberschaft.** Roberto kann
+längst mit seiner E-Mail Inhalte bearbeiten, während das Projekt noch dem
+Ersteller gehört. Die Übertragung ist der letzte Schritt, nicht der erste.
+
+Der Web3Forms-Schlüssel ist fest an die Adresse gebunden, an die die Anfragen
+gehen, und wird auch dorthin geschickt. Für `info@gimenez.ch` kann ihn deshalb
+nur Roberto selbst anfordern (Abschnitt 5).
+
+---
+
 ## 1. Sanity-Projekt anlegen (einmalig)
 
-1. Auf <https://sanity.io> mit der E-Mail-Adresse anmelden.
+1. Auf <https://sanity.io> anmelden — vor der Zusage mit der **eigenen**
+   E-Mail-Adresse, nicht mit der des Kunden.
 2. **Create new project** → Name zum Beispiel `Fahrschule Gimenez`,
    Dataset `production`, Sichtbarkeit **Public** (dann braucht die Website
    kein Lese-Token).
@@ -124,8 +148,11 @@ Jeder frühere Stand lässt sich zurückholen.
 
 ## 5. Kontaktformular scharfschalten
 
-Das muss Roberto selbst machen, weil dafür Zugriff auf das Postfach
-`info@gimenez.ch` nötig ist:
+**Für die Demo** trägt der Ersteller vorübergehend seine eigene Adresse ein,
+damit sich das Formular im Verkaufsgespräch vorführen lässt.
+
+**Für den Betrieb** muss Roberto es selbst machen, weil dafür Zugriff auf das
+Postfach `info@gimenez.ch` nötig ist:
 
 1. Auf <https://web3forms.com> die E-Mail-Adresse eintragen.
 2. Den zugeschickten Access Key kopieren.
@@ -142,7 +169,11 @@ Ohne diesen Schlüssel werden abgeschickte Anfragen **nicht zugestellt**.
 - [ ] **Datenschutzerklärung:** Sanity und Vercel als Dienstleister aufnehmen.
 - [ ] **Demo-Modus ausschalten** (Grundeinstellungen → Technisches). Solange er
       an ist, wird die Seite bei Google nicht gefunden.
-- [ ] **Kontaktformular** testen (Abschnitt 5).
+- [ ] **Web3Forms-Schlüssel auf Robertos Adresse umgestellt?** Solange der
+      Demo-Schlüssel drin steht, landen Kundenanfragen beim Ersteller statt bei
+      Roberto. Das ist der Punkt, der am ehesten vergessen geht.
+- [ ] **Kontaktformular** testen (Abschnitt 5): echte Anfrage abschicken und
+      prüfen, dass sie in `info@gimenez.ch` ankommt.
 - [ ] **Eigene Domain** in Vercel verbinden und `NEXT_PUBLIC_SITE_URL` anpassen.
 - [ ] Auf dem Handy durchklicken: Anrufen, Route öffnen, Formular abschicken.
 

@@ -2,24 +2,22 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getPage } from "@/lib/content";
 import { pageMeta } from "@/lib/seo";
-import { site } from "@/lib/data";
+import { getSite } from "@/lib/data";
 import Reveal from "@/components/Reveal";
 import Icon from "@/components/Icon";
 
-type FM = {
-  seoTitle: string;
-  seoDescription: string;
-  hero: { eyebrow: string; title: string; lead: string };
-};
-const { frontmatter: fm } = getPage<FM>("danke");
+export async function generateMetadata(): Promise<Metadata> {
+  const { frontmatter: fm } = await getPage("danke");
+  return pageMeta("/danke", {
+    title: fm.seoTitle,
+    description: fm.seoDescription,
+    noindex: true,
+  });
+}
 
-export const metadata: Metadata = pageMeta("/danke", {
-  title: fm.seoTitle,
-  description: fm.seoDescription,
-  noindex: true,
-});
+export default async function Page() {
+  const [{ frontmatter: fm }, site] = await Promise.all([getPage("danke"), getSite()]);
 
-export default function Page() {
   return (
     <section className="block-light section">
       <div className="wrap-eng text-center">

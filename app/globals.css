@@ -233,6 +233,11 @@
   .prose > * + * {
     margin-top: 1.1rem;
   }
+  /* Im Studio getippte Zeilenumbrueche bleiben sichtbar (z. B. der Adressblock
+     im Impressum), ohne dass der Kunde dafuer etwas wissen muss. */
+  .prose p {
+    white-space: pre-line;
+  }
   .prose h2 {
     font-family: theme("fontFamily.display");
     font-weight: 700;

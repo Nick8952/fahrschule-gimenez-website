@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { site } from "@/lib/data";
+import { getSite } from "@/lib/data";
 import { asset } from "@/lib/site";
 
 /**
@@ -21,7 +21,8 @@ import { asset } from "@/lib/site";
  * Wenn sich die Adresse aendert, muss das Bild neu erzeugt werden; die
  * Adresse selbst kommt weiterhin aus site.json und steht als Text darunter.
  */
-export default function MapEmbed() {
+export default async function MapEmbed() {
+  const site = await getSite();
   const routeUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
     site.mapQuery,
   )}`;

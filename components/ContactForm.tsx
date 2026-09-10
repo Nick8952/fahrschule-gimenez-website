@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { Field, Web3FormsHidden, inputClass } from "./FormBits";
-import { courses } from "@/lib/data";
+import { getCourses } from "@/lib/data";
 
-export default function ContactForm() {
+export default async function ContactForm() {
+  const courses = await getCourses();
+
   return (
     <form action="https://api.web3forms.com/submit" method="POST" className="card !p-6 sm:!p-8">
       <Web3FormsHidden subject="Neue Anfrage über die Website (Fahrschule Gimenez)" />

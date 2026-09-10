@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { getPage } from "@/lib/content";
 import { pageMeta } from "@/lib/seo";
-import { site, courses, reasons } from "@/lib/data";
+import { getCourses, getReasons, getSite } from "@/lib/data";
 import { asset } from "@/lib/site";
 import RouteStrip from "@/components/RouteStrip";
 import Reveal from "@/components/Reveal";
@@ -11,27 +11,27 @@ import Icon from "@/components/Icon";
 import CtaBand from "@/components/CtaBand";
 import { SectionHead, ChecklistGrid, LangList } from "@/components/ui";
 
-type FM = {
-  seoTitle: string;
-  seoDescription: string;
-  hero: { eyebrow: string; title: string; lead: string };
-};
-const { frontmatter: fm } = getPage<FM>("home");
+export async function generateMetadata(): Promise<Metadata> {
+  const { frontmatter: fm } = await getPage("home");
+  return pageMeta("/", { title: fm.seoTitle, description: fm.seoDescription });
+}
 
-export const metadata: Metadata = pageMeta("/", {
-  title: fm.seoTitle,
-  description: fm.seoDescription,
-});
+export default async function HomePage() {
+  const [{ frontmatter: fm }, site, courses, reasons] = await Promise.all([
+    getPage("home"),
+    getSite(),
+    getCourses(),
+    getReasons(),
+  ]);
 
-/* Die Eckdaten, die jemand vor dem Anruf wissen will — direkt aus site.json,
-   damit sie im CMS mitgepflegt werden und nicht doppelt gepflegt sind. */
-const facts = [
-  { k: "Unterrichtssprachen", v: `${site.languages.length} Sprachen` },
-  { k: "Schulwagen", v: site.vehicles.models.join(" · ") },
-  { k: "Standort", v: `${site.address.street}, ${site.address.city}` },
-];
+  /* Die Eckdaten, die jemand vor dem Anruf wissen will — abgeleitet aus den
+     Grundeinstellungen, damit sie nicht doppelt gepflegt werden müssen. */
+  const facts = [
+    { k: "Unterrichtssprachen", v: `${site.languages.length} Sprachen` },
+    { k: "Schulwagen", v: site.vehicles.models.join(" · ") },
+    { k: "Standort", v: `${site.address.street}, ${site.address.city}` },
+  ];
 
-export default function HomePage() {
   return (
     <>
       {/* Hero — Bildebene (Foto) mit einer Informationstafel aus Milchglas
@@ -44,7 +44,6 @@ export default function HomePage() {
             alt=""
             fill
             priority
-            unoptimized
             className="hero-photo object-cover object-[68%_45%]"
           />
           <div className="hero-scrim absolute inset-0" />

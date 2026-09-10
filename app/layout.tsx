@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Archivo, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
-import { site } from "@/lib/data";
+import { getNav, getSite } from "@/lib/data";
 import { absUrl } from "@/lib/site";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
@@ -29,27 +29,35 @@ const mono = IBM_Plex_Mono({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL(absUrl("/")),
-  title: {
-    default: `${site.name} – Autoescola in Zürich`,
-    template: `%s`,
-  },
-  description: site.blurb,
-  applicationName: site.name,
-  authors: [{ name: `${site.name} – ${site.owner}` }],
-  robots: site.demo
-    ? { index: false, follow: false, nocache: true }
-    : { index: true, follow: true },
-  openGraph: {
-    type: "website",
-    locale: "de_CH",
-    siteName: site.name,
-  },
-  other: { "theme-color": site.themeColor },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const site = await getSite();
+  return {
+    metadataBase: new URL(absUrl("/")),
+    title: {
+      default: `${site.name} – Autoescola in Zürich`,
+      template: `%s`,
+    },
+    description: site.blurb,
+    applicationName: site.name,
+    authors: [{ name: `${site.name} – ${site.owner}` }],
+    robots: site.demo
+      ? { index: false, follow: false, nocache: true }
+      : { index: true, follow: true },
+    openGraph: {
+      type: "website",
+      locale: "de_CH",
+      siteName: site.name,
+    },
+    other: { "theme-color": site.themeColor },
+  };
+}
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  // Kopf- und Fusszeile brauchen dieselben Daten auf jeder Seite. Sie hier
+  // einmal zu holen spart pro Seite zwei Abfragen — und die Kopfzeile ist eine
+  // Client-Komponente, die ohnehin Props braucht.
+  const [site, nav] = await Promise.all([getSite(), getNav()]);
+
   return (
     <html lang="de" className={`${display.variable} ${sans.variable} ${mono.variable}`}>
       <body className="font-body text-step-0">
@@ -59,10 +67,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Zum Inhalt springen
         </a>
-        <DrivingSchoolJsonLd />
-        <SiteHeader />
+        <DrivingSchoolJsonLd site={site} />
+        <SiteHeader site={site} nav={nav} />
         <main id="inhalt">{children}</main>
-        <SiteFooter />
+        <SiteFooter site={site} nav={nav} />
       </body>
     </html>
   );

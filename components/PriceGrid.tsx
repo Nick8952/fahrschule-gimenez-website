@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Reveal from "./Reveal";
 import Icon, { type IconKey } from "./Icon";
-import { courseFor, type PriceRow } from "@/lib/data";
+import { courseFor, type Course, type PriceRow } from "@/lib/data";
 
 /**
  * Preise im gleichen Signaletik-Raster wie das Kursangebot: Haarlinien statt
@@ -9,11 +9,17 @@ import { courseFor, type PriceRow } from "@/lib/data";
  * dadurch stehen die Preise über alle Zellen hinweg exakt untereinander und
  * lassen sich zeilenweise vergleichen.
  */
-export default function PriceGrid({ items }: { items: PriceRow[] }) {
+export default function PriceGrid({
+  items,
+  courses,
+}: {
+  items: PriceRow[];
+  courses: Course[];
+}) {
   return (
     <div className="grid gap-px border border-ink/15 bg-ink/15 sm:grid-cols-2 lg:grid-cols-4">
       {items.map((row, i) => {
-        const course = courseFor(row.courseKey);
+        const course = courseFor(courses, row.courseKey);
         return (
           <Reveal
             key={row.name}

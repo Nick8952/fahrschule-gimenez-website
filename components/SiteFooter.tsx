@@ -1,9 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
-import { site, nav } from "@/lib/data";
+import type { Nav, Site } from "@/lib/data";
 import { asset } from "@/lib/site";
 
-export default function SiteFooter() {
+export default function SiteFooter({ site, nav }: { site: Site; nav: Nav }) {
   const year = new Date().getFullYear();
   return (
     <footer>

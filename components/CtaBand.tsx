@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { site } from "@/lib/data";
+import { getSite } from "@/lib/data";
 import Reveal from "./Reveal";
 import Icon from "./Icon";
 
@@ -12,7 +12,7 @@ import Icon from "./Icon";
  * Handlung (Knopf), nicht die des Hintergrunds - und weisser Text auf
  * Graphit haelt 8:1 Kontrast statt der 4.4:1 auf Signalrot.
  */
-export default function CtaBand({
+export default async function CtaBand({
   title,
   body,
   actionLabel,
@@ -23,6 +23,8 @@ export default function CtaBand({
   actionLabel: string;
   className?: string;
 }) {
+  const site = await getSite();
+
   return (
     <section className={`section block-dark ${className}`}>
       <div className="wrap">

@@ -1,34 +1,80 @@
-/* Liest Markdown-Inhalte aus dem content-Ordner: Frontmatter + gerendertes HTML. */
+/* Seitentexte und Rechtstexte.
+ *
+ * Quelle ist Sanity (Portable Text). Rueckfall sind die Markdown-Dateien unter
+ * content/, die beim Umstieg als Ausgangsbestand dienten — sie werden dann mit
+ * demselben Konverter wie im Seed-Skript nach Portable Text uebersetzt, damit
+ * es in Prose.tsx nur EINEN Render-Pfad gibt.
+ */
 
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
-import { marked } from "marked";
+
+import { sanityFetch } from "@/sanity/fetch";
+import { legalQuery, pageQuery } from "@/sanity/queries";
+import { markdownToBlocks, type PortableTextBlock } from "./markdownToBlocks";
 
 const ROOT = process.cwd();
 
-/* breaks: true — im CMS getippte Zeilenumbrueche sollen auch welche bleiben.
-   Ohne das klebte z. B. die Adresse im Impressum zu einer Zeile zusammen, und
-   wer die Texte spaeter im CMS pflegt, kann sich das nicht erklaeren. Kein
-   Absatz in content/ ist ueber mehrere Zeilen umbrochen, es entstehen also
-   keine ungewollten <br>. */
-marked.setOptions({ gfm: true, breaks: true });
+export type PageContent<T> = { frontmatter: T; body: PortableTextBlock[] };
 
-type Parsed<T> = { frontmatter: T; html: string; raw: string };
+export type PageFM = {
+  seoTitle: string;
+  seoDescription: string;
+  hero: { eyebrow: string; title: string; lead: string };
+};
 
-function read<T>(file: string): Parsed<T> {
+export type LegalFM = {
+  title: string;
+  subtitle?: string;
+  seoTitle?: string;
+  seoDescription?: string;
+};
+
+function readMarkdown<T>(file: string): PageContent<T> {
   const src = fs.readFileSync(file, "utf8");
   const { data, content } = matter(src);
-  const html = content.trim() ? (marked.parse(content) as string) : "";
-  return { frontmatter: data as T, html, raw: content };
+  return {
+    frontmatter: data as T,
+    body: content.trim() ? markdownToBlocks(content) : [],
+  };
 }
 
-export function getPage<T = Record<string, unknown>>(slug: string): Parsed<T> {
-  return read<T>(path.join(ROOT, "content", "pages", `${slug}.md`));
+export async function getPage(slug: string): Promise<PageContent<PageFM>> {
+  const result = await sanityFetch<{
+    seoTitle: string;
+    seoDescription: string;
+    hero: PageFM["hero"];
+    body: PortableTextBlock[] | null;
+  } | null>(pageQuery, () => null, { slug });
+
+  if (result) {
+    return {
+      frontmatter: {
+        seoTitle: result.seoTitle,
+        seoDescription: result.seoDescription,
+        hero: result.hero,
+      },
+      body: result.body ?? [],
+    };
+  }
+
+  return readMarkdown<PageFM>(path.join(ROOT, "content", "pages", `${slug}.md`));
 }
 
-export function getLegal<T = { title: string; subtitle?: string; seoTitle?: string; seoDescription?: string }>(
-  slug: string,
-): Parsed<T> {
-  return read<T>(path.join(ROOT, "content", "legal", `${slug}.md`));
+export async function getLegal(slug: string): Promise<PageContent<LegalFM>> {
+  const result = await sanityFetch<{
+    title: string;
+    subtitle?: string;
+    seoTitle?: string;
+    seoDescription?: string;
+    body: PortableTextBlock[] | null;
+  } | null>(legalQuery, () => null, { slug });
+
+  if (result) {
+    const { body, ...frontmatter } = result;
+    return { frontmatter, body: body ?? [] };
+  }
+
+  return readMarkdown<LegalFM>(path.join(ROOT, "content", "legal", `${slug}.md`));
 }

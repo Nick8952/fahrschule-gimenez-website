@@ -1,26 +1,25 @@
 import type { Metadata } from "next";
 import { getPage } from "@/lib/content";
 import { pageMeta } from "@/lib/seo";
-import { steps, faq } from "@/lib/data";
+import { getFaq, getSteps } from "@/lib/data";
 import PageHero from "@/components/PageHero";
 import RouteSteps from "@/components/RouteSteps";
 import Faq from "@/components/Faq";
 import CtaBand from "@/components/CtaBand";
 import { SectionHead } from "@/components/ui";
 
-type FM = {
-  seoTitle: string;
-  seoDescription: string;
-  hero: { eyebrow: string; title: string; lead: string };
-};
-const { frontmatter: fm } = getPage<FM>("ablauf");
+export async function generateMetadata(): Promise<Metadata> {
+  const { frontmatter: fm } = await getPage("ablauf");
+  return pageMeta("/ablauf", { title: fm.seoTitle, description: fm.seoDescription });
+}
 
-export const metadata: Metadata = pageMeta("/ablauf", {
-  title: fm.seoTitle,
-  description: fm.seoDescription,
-});
+export default async function Page() {
+  const [{ frontmatter: fm }, steps, faq] = await Promise.all([
+    getPage("ablauf"),
+    getSteps(),
+    getFaq(),
+  ]);
 
-export default function Page() {
   return (
     <>
       <PageHero eyebrow={fm.hero.eyebrow} title={fm.hero.title} lead={fm.hero.lead} crumb="Ablauf" />

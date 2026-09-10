@@ -1,7 +1,7 @@
-import { site } from "@/lib/data";
+import type { Site } from "@/lib/data";
 import { absUrl } from "@/lib/site";
 
-export function DrivingSchoolJsonLd() {
+export function DrivingSchoolJsonLd({ site }: { site: Site }) {
   const data = {
     "@context": "https://schema.org",
     "@type": "DrivingSchool",

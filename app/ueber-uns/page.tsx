@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getPage } from "@/lib/content";
 import { pageMeta } from "@/lib/seo";
-import { site, reasons } from "@/lib/data";
+import { getReasons, getSite } from "@/lib/data";
 import PageHero from "@/components/PageHero";
 import Prose from "@/components/Prose";
 import Reveal from "@/components/Reveal";
@@ -10,19 +10,18 @@ import CtaBand from "@/components/CtaBand";
 import Icon from "@/components/Icon";
 import { ChecklistGrid, LangList, SectionHead } from "@/components/ui";
 
-type FM = {
-  seoTitle: string;
-  seoDescription: string;
-  hero: { eyebrow: string; title: string; lead: string };
-};
-const { frontmatter: fm, html } = getPage<FM>("ueber-uns");
+export async function generateMetadata(): Promise<Metadata> {
+  const { frontmatter: fm } = await getPage("ueber-uns");
+  return pageMeta("/ueber-uns", { title: fm.seoTitle, description: fm.seoDescription });
+}
 
-export const metadata: Metadata = pageMeta("/ueber-uns", {
-  title: fm.seoTitle,
-  description: fm.seoDescription,
-});
+export default async function Page() {
+  const [{ frontmatter: fm, body }, site, reasons] = await Promise.all([
+    getPage("ueber-uns"),
+    getSite(),
+    getReasons(),
+  ]);
 
-export default function Page() {
   return (
     <>
       <PageHero eyebrow={fm.hero.eyebrow} title={fm.hero.title} lead={fm.hero.lead} crumb="Über uns" />
@@ -32,7 +31,7 @@ export default function Page() {
             springt der Text gegenueber allen anderen Abschnitten ein. */}
         <div className="wrap">
           <Reveal className="max-w-eng">
-            <Prose html={html} />
+            <Prose body={body} />
           </Reveal>
           <Reveal delay={100} className="mt-10">
             <Link href="/kontakt" className="btn btn-signal">

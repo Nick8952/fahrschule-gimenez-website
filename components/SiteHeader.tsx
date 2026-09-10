@@ -4,11 +4,11 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import { site, nav } from "@/lib/data";
+import type { Nav, Site } from "@/lib/data";
 import { asset } from "@/lib/site";
 import Icon from "./Icon";
 
-export default function SiteHeader() {
+export default function SiteHeader({ site, nav }: { site: Site; nav: Nav }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 

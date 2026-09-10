@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getPage } from "@/lib/content";
 import { pageMeta } from "@/lib/seo";
-import { prices } from "@/lib/data";
+import { getCourses, getPrices } from "@/lib/data";
 import PageHero from "@/components/PageHero";
 import PriceGrid from "@/components/PriceGrid";
 import { Callout, SectionHead } from "@/components/ui";
@@ -9,19 +9,18 @@ import Reveal from "@/components/Reveal";
 import CtaBand from "@/components/CtaBand";
 import Icon from "@/components/Icon";
 
-type FM = {
-  seoTitle: string;
-  seoDescription: string;
-  hero: { eyebrow: string; title: string; lead: string };
-};
-const { frontmatter: fm } = getPage<FM>("preise");
+export async function generateMetadata(): Promise<Metadata> {
+  const { frontmatter: fm } = await getPage("preise");
+  return pageMeta("/preise", { title: fm.seoTitle, description: fm.seoDescription });
+}
 
-export const metadata: Metadata = pageMeta("/preise", {
-  title: fm.seoTitle,
-  description: fm.seoDescription,
-});
+export default async function Page() {
+  const [{ frontmatter: fm }, prices, courses] = await Promise.all([
+    getPage("preise"),
+    getPrices(),
+    getCourses(),
+  ]);
 
-export default function Page() {
   return (
     <>
       <PageHero eyebrow={fm.hero.eyebrow} title={fm.hero.title} lead={fm.hero.lead} crumb="Preise" />
@@ -43,7 +42,7 @@ export default function Page() {
             </Callout>
           </Reveal>
 
-          <PriceGrid items={prices.items} />
+          <PriceGrid items={prices.items} courses={courses.items} />
         </div>
       </section>
 

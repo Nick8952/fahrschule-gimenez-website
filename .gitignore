@@ -19,3 +19,11 @@ _originals/
 next-env.d.ts
 
 .vercel
+
+# Umgebungsvariablen
+.env.local
+.env*.local
+
+# Vercel / Build
+.vercel
+out

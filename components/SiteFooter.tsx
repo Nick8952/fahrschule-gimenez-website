@@ -45,7 +45,7 @@ export default function SiteFooter({ site, nav }: { site: Site; nav: Nav }) {
                     <li key={l.href}>
                       <Link
                         href={l.href}
-                        className="inline-block py-2 transition-colors hover:text-white"
+                        className="inline-block py-2 transition-colors hover:text-white active:text-white"
                       >
                         {l.label}
                       </Link>

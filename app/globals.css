@@ -74,6 +74,18 @@
     outline-offset: 3px;
     border-radius: 2px;
   }
+  /* Tailwinds Preflight setzt -webkit-tap-highlight-color: transparent auf
+     <html>. Damit gibt es auf dem Handy beim Antippen ueberhaupt keine
+     Rueckmeldung mehr — man tippt, nichts passiert sichtbar, und glaubt
+     danebengetroffen zu haben. Wir geben die Rueckmeldung zurueck, in der
+     Markenfarbe statt im Browser-Grau. */
+  a,
+  button,
+  [role="button"],
+  label,
+  summary {
+    -webkit-tap-highlight-color: color-mix(in srgb, var(--signal) 18%, transparent);
+  }
 }
 
 @layer components {
@@ -208,6 +220,31 @@
   .btn-on-dark:hover {
     border-color: #fff;
     background: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Menuezeile im mobilen Vollbild-Menue.
+     Randlos ueber die volle Breite, damit es keine tote Zone am Rand gibt, mit
+     sichtbarem Gedrueckt-Zustand — sonst wirkt nur der Text anklickbar. */
+  .menu-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+    padding: 1.15rem 4vw;
+    border-bottom: 1px solid var(--line);
+    font-family: theme("fontFamily.display");
+    font-size: 1.7rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    transition: background 0.12s var(--ease);
+  }
+  .menu-row:active {
+    background: var(--paper-2);
+  }
+  .menu-row[aria-current="page"] {
+    color: var(--signal);
   }
 
   /* ---------- Flächen ---------- */

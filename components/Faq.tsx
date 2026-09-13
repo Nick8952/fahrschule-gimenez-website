@@ -22,7 +22,7 @@ export default function Faq({ items }: { items: { q: string; a: string }[] }) {
               type="button"
               onClick={() => setOpen(isOpen ? null : i)}
               aria-expanded={isOpen}
-              className="flex w-full items-center justify-between gap-6 py-5 text-left font-display text-[1.05rem] font-bold transition-colors hover:text-signal"
+              className="flex w-full items-center justify-between gap-6 py-5 text-left font-display text-[1.05rem] font-bold transition-colors hover:text-signal active:text-signal"
             >
               {item.q}
               <Icon

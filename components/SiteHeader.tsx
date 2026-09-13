@@ -96,27 +96,35 @@ export default function SiteHeader({ site, nav }: { site: Site; nav: Nav }) {
         style={{ paddingTop: "calc(var(--header-h) + 1rem)" }}
         aria-hidden={!open}
       >
-        <nav className="wrap flex h-full flex-col overflow-y-auto pb-24">
+        <nav className="flex h-full flex-col overflow-y-auto pb-28" aria-label="Menü">
           {nav.primary.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="flex items-center justify-between border-b border-ink/15 py-4 font-display text-[1.9rem] font-bold tracking-[-0.02em] text-ink"
+              aria-current={isActive(item.href) ? "page" : undefined}
+              className="menu-row"
             >
               {item.label}
-              <span className="text-signal">→</span>
+              <Icon name="arrow" className="h-6 w-6 shrink-0 text-signal" />
             </Link>
           ))}
-          <div className="mt-8 grid gap-1 font-mono text-[0.85rem] text-ink-soft">
-            <a href={`tel:${site.phone.tel}`} className="inline-block py-2 text-signal">
-              {site.phone.display}
+
+          {/* Anrufen gehoert auch hier hin: das feste Aktionsband am unteren
+              Rand liegt unter diesem Vollbild-Menue und ist nicht erreichbar,
+              solange es offen ist. */}
+          <div className="px-[4vw] pt-8">
+            <a href={`tel:${site.phone.tel}`} className="btn btn-signal w-full">
+              <Icon name="phone" className="h-4 w-4" /> {site.phone.display}
             </a>
-            <a href={`mailto:${site.email}`} className="inline-block py-2">
-              {site.email}
-            </a>
-            <span className="pt-1">
-              {site.address.street}, {site.address.zip} {site.address.city}
-            </span>
+
+            <div className="mt-6 grid gap-1 font-mono text-[0.85rem] text-ink-soft">
+              <a href={`mailto:${site.email}`} className="inline-block py-2">
+                {site.email}
+              </a>
+              <span className="pt-1">
+                {site.address.street}, {site.address.zip} {site.address.city}
+              </span>
+            </div>
           </div>
         </nav>
       </div>
@@ -128,13 +136,13 @@ export default function SiteHeader({ site, nav }: { site: Site; nav: Nav }) {
       >
         <a
           href={`tel:${site.phone.tel}`}
-          className="flex flex-1 items-center justify-center gap-2 py-3.5 font-display text-[0.85rem] font-bold text-ink"
+          className="flex flex-1 items-center justify-center gap-2 py-3.5 font-display text-[0.85rem] font-bold text-ink transition-colors active:bg-paper-2"
         >
           <Icon name="phone" className="h-4 w-4" /> Anrufen
         </a>
         <Link
           href="/kontakt"
-          className="flex flex-1 items-center justify-center bg-signal py-3.5 font-display text-[0.85rem] font-bold text-white"
+          className="flex flex-1 items-center justify-center bg-signal py-3.5 font-display text-[0.85rem] font-bold text-white transition-colors active:bg-signal-600"
         >
           Anfrage senden
         </Link>

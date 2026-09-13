@@ -38,7 +38,7 @@ export default function RouteStrip({
           </>
         );
         const cls =
-          "flex min-h-[9rem] flex-col bg-paper p-5 transition-colors hover:bg-paper-2";
+          "flex min-h-[9rem] flex-col bg-paper p-5 transition-colors hover:bg-paper-2 active:bg-paper-2";
         return linkTo ? (
           <Link key={s.key} href={linkTo(s.key)} className={cls}>
             {inner}
@@ -55,7 +55,7 @@ export default function RouteStrip({
       {allHref && (
         <Link
           href={allHref}
-          className="flex min-h-[9rem] flex-col justify-between bg-signal p-5 text-white transition-colors hover:bg-signal-600"
+          className="flex min-h-[9rem] flex-col justify-between bg-signal p-5 text-white transition-colors hover:bg-signal-600 active:bg-signal-600"
         >
           <Icon name="arrow" className="h-6 w-6" />
           <span className="font-display text-[1rem] font-bold leading-tight">
